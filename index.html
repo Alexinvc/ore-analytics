@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORE Analytics — ore.supply stats</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+:root{
+  --bg:#0a0a0a;--s:#111;--b:#1e1e1e;--b2:#2a2a2a;
+  --ore:#f97316;--og:rgba(249,115,22,.12);--od:#7c3a0e;
+  --sol:#9945ff;--gn:#22c55e;--rd:#ef4444;
+  --tx:#e5e5e5;--mu:#555;--m2:#888;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:'Syne',sans-serif;min-height:100vh}
+a{color:var(--ore);text-decoration:none}
+a:hover{text-decoration:underline}
+
+header{border-bottom:1px solid var(--b);padding:15px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);z-index:99}
+.logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-.4px}
+.li{width:26px;height:26px;background:var(--ore);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.hn{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu)}
+
+main{max-width:860px;margin:0 auto;padding:32px 18px 70px}
+h1{font-size:24px;font-weight:800;letter-spacing:-.8px;margin-bottom:3px}
+h1 span{color:var(--ore)}
+.sub{color:var(--m2);font-size:12px;margin-bottom:28px;font-family:'Space Mono',monospace}
+
+.card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:22px;margin-bottom:20px}
+.ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--m2);margin-bottom:16px;font-family:'Space Mono',monospace}
+
+.row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:end}
+@media(max-width:580px){.row{grid-template-columns:1fr}}
+.f{display:flex;flex-direction:column;gap:4px}
+.f label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);font-family:'Space Mono',monospace}
+.f input,.f select{background:var(--bg);border:1px solid var(--b2);border-radius:6px;color:var(--tx);font-family:'Space Mono',monospace;font-size:12px;padding:9px 12px;outline:none;transition:border-color .15s;width:100%}
+.f input:focus,.f select:focus{border-color:var(--ore)}
+.f input::placeholder{color:var(--mu)}
+.f select option{background:#1a1a1a}
+
+.rpc-sec{margin-top:14px;padding-top:14px;border-top:1px solid var(--b)}
+.hint{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu);margin-top:5px;line-height:1.65}
+.hint code{color:var(--ore);background:rgba(249,115,22,.08);padding:1px 4px;border-radius:3px}
+
+.btn{background:var(--ore);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:9px 22px;cursor:pointer;transition:opacity .15s,transform .1s;height:38px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{opacity:.85} .btn:active{transform:scale(.97)} .btn:disabled{opacity:.35;cursor:not-allowed}
+
+.sb{display:none;background:var(--s);border:1px solid var(--b);border-radius:6px;padding:11px 15px;margin-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--m2);gap:8px;align-items:center}
+.sb.on{display:flex}
+.spin{width:12px;height:12px;border:2px solid var(--b2);border-top-color:var(--ore);border-radius:50%;animation:sp .65s linear infinite;flex-shrink:0}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.eb{display:none;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);border-radius:6px;padding:12px 15px;margin-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;color:#fca5a5;line-height:1.65;white-space:pre-wrap}
+.eb.on{display:block}
+
+#res{display:none} #res.on{display:block}
+.rh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:6px}
+.rh h2{font-size:14px;font-weight:700}
+.wt{font-family:'Space Mono',monospace;font-size:10px;color:var(--ore);background:var(--og);border:1px solid var(--od);border-radius:3px;padding:2px 7px;word-break:break-all}
+.range-tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);border:1px solid var(--b2);border-radius:3px;padding:2px 7px}
+
+.g6{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:9px}
+@media(max-width:560px){.g6{grid-template-columns:1fr 1fr}}
+.mc{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:14px}
+.ml{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:7px;display:flex;align-items:center;gap:4px}
+.dot{width:5px;height:5px;border-radius:50%}
+.ds{background:var(--sol)} .do{background:var(--ore)} .dg{background:var(--gn)} .dr{background:var(--rd)} .dm{background:var(--mu)}
+.mv{font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1}
+.mu2{font-size:10px;font-weight:600;margin-left:2px;opacity:.5}
+.ms{font-family:'Space Mono',monospace;font-size:9px;color:var(--mu);margin-top:3px}
+
+.pnl{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.pl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:3px}
+.pv{font-size:26px;font-weight:800;letter-spacing:-.8px}
+.pos{color:var(--gn)} .neg{color:var(--rd)}
+.pb{font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);text-align:right;line-height:1.7}
+
+.st2{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:9px;margin-top:22px}
+.tw{overflow-x:auto;border:1px solid var(--b);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:11px}
+thead th{background:var(--s);padding:8px 12px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);border-bottom:1px solid var(--b);white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--b);transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+td{padding:7px 12px;vertical-align:middle;white-space:nowrap}
+td.m{color:var(--m2)}
+.badge{display:inline-flex;align-items:center;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;text-transform:uppercase}
+.bm{background:rgba(249,115,22,.13);color:#fb923c;border:1px solid rgba(249,115,22,.2)}
+.bw{background:rgba(34,197,94,.11);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.bo{background:rgba(100,100,100,.11);color:#9ca3af;border:1px solid rgba(100,100,100,.18)}
+.ap{color:var(--gn)} .an{color:#f87171}
+.ta{color:var(--ore);text-decoration:none;font-size:10px}
+.ta:hover{text-decoration:underline}
+
+.nt{background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.13);border-radius:6px;padding:11px 15px;margin-top:20px;font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);line-height:1.75}
+.nt strong{color:var(--ore)}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--s)}
+::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><div class="li">⛏</div>ORE Analytics</div>
+  <span class="hn">Solana · ORE V2 · ore.supply</span>
+</header>
+
+<main>
+  <h1>Wallet <span>ORE</span> Stats</h1>
+  <p class="sub">// Статистика гаманця в межах протоколу ore.supply</p>
+
+  <div class="card">
+    <div class="ct">⚙ Параметри запиту</div>
+    <div class="row">
+      <div class="f">
+        <label>Адреса гаманця Solana</label>
+        <input id="wallet" type="text"
+          placeholder="7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
+          spellcheck="false" autocomplete="off">
+      </div>
+      <div class="f">
+        <label>Інтервал</label>
+        <select id="preset">
+          <option value="7">7 днів</option>
+          <option value="14">14 днів</option>
+          <option value="30" selected>30 днів</option>
+          <option value="90">90 днів</option>
+          <option value="0">Всі TX (до 1000)</option>
+        </select>
+      </div>
+      <button class="btn" id="btn" onclick="run()">
+        <span id="bt">Аналіз</span><span>→</span>
+      </button>
+    </div>
+
+    <div class="rpc-sec">
+      <div class="f">
+        <label>Helius RPC (обов'язково)</label>
+        <input id="rpc" type="text"
+          placeholder="https://mainnet.helius-rpc.com/?api-key=ВАШ_КЛЮЧ">
+        <p class="hint">
+          1. Зареєструйтесь на <a href="https://dev.helius.xyz" target="_blank">dev.helius.xyz</a> (безкоштовно, email достатньо)<br>
+          2. Скопіюйте RPC URL → вставте сюди<br>
+          3. Виглядає так: <code>https://mainnet.helius-rpc.com/?api-key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb" id="sb"><div class="spin"></div><span id="st">...</span></div>
+  <div class="eb" id="eb"></div>
+
+  <div id="res">
+    <div class="rh">
+      <h2>Результати</h2>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span class="wt" id="rw"></span>
+        <span class="range-tag" id="rt"></span>
+      </div>
+    </div>
+
+    <div class="g6" id="mg"></div>
+    <div id="pnld"></div>
+
+    <p class="st2">📋 ORE транзакції (до 200 записів)</p>
+    <div class="tw">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Дата / час</th><th>Тип</th>
+          <th>SOL зміна</th><th>ORE зміна</th><th>Fee SOL</th><th>TX</th>
+        </tr></thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+
+    <div class="nt">
+      <strong>Примітки:</strong><br>
+      • ORE V2 program: <strong>oreV2ZymfyeXgNgBdqMkumTqqAprVqgBxpC66AYkpe</strong><br>
+      • ORE SPL mint: <strong>oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz</strong><br>
+      • "Внесено SOL" = MINE транзакції (ставки в раунди) · "Виведено SOL" = WIN (виграші)<br>
+      • "Комісії ORE" = від'ємний outflow ORE токену (refine ~10%)<br>
+      • NET PnL = Виведено − Внесено − Мережеві fees
+    </div>
+  </div>
+</main>
+
+<script>
+// ── Constants ────────────────────────────────────────────────
+const ORE_PROGRAMS = new Set([
+  "oreV2ZymfyeXgNgBdqMkumTqqAprVqgBxpC66AYkpe",
+  "ore4vZHMxoBbJ6GBHoDAFqpSGJC8sEHRjj5v6Cz2Bq8",
+  "orePrYs9PVJG4PaSwFMbMacjzpRmVH3EMBe7hVyoLRm",
+  "mineXqpDeBeMR8bPQCyy9UneJZbjFywraS3koWZ8SSH",
+]);
+const ORE_MINT = "oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz";
+const LAMPORTS = 1_000_000_000;
+
+// ── UI ────────────────────────────────────────────────────────
+const $   = id => document.getElementById(id);
+const ss  = (t, on=true) => { $("sb").classList.toggle("on",on); $("st").textContent=t; };
+const se  = t => { const b=$("eb"); b.textContent=t; b.classList.toggle("on",!!t); };
+const sr  = v => $("res").classList.toggle("on",v);
+const fmt = (n,d=4) => Number(n).toFixed(d);
+const slp = ms => new Promise(r=>setTimeout(r,ms));
+
+function fmtDate(ts) {
+  const d = new Date(ts * 1000);
+  return d.toLocaleDateString("uk-UA",{day:"2-digit",month:"2-digit",year:"2-digit"})
+       + " " + d.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});
+}
+
+$("wallet").addEventListener("keydown", e => { if(e.key==="Enter") run(); });
+
+// ── JSON-RPC ──────────────────────────────────────────────────
+let _id = 1;
+async function rpc(ep, method, params=[]) {
+  const r = await fetch(ep, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ jsonrpc:"2.0", id:_id++, method, params }),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const j = await r.json();
+  if (j.error) throw new Error(j.error.message || JSON.stringify(j.error));
+  return j.result;
+}
+
+// ── Fetch signatures ──────────────────────────────────────────
+async function getSignatures(ep, address, days) {
+  const raw = await rpc(ep, "getSignaturesForAddress", [address, { limit: 1000 }]);
+  if (!Array.isArray(raw)) return [];
+  if (days === 0) return raw;
+  const cutoff = Math.floor(Date.now()/1000) - days*86400;
+  return raw.filter(s => s.blockTime && s.blockTime >= cutoff);
+}
+
+// ── Fetch parsed transactions ─────────────────────────────────
+async function getParsedTxs(ep, sigs) {
+  const out = [];
+  const CHUNK = 10;
+  for (let i=0; i<sigs.length; i+=CHUNK) {
+    const chunk = sigs.slice(i, i+CHUNK).map(s => s.signature);
+    ss(`Завантаження ${i+1}–${Math.min(i+CHUNK,sigs.length)} з ${sigs.length} TX…`);
+    try {
+      const txs = await rpc(ep, "getParsedTransactions", [
+        chunk,
+        { encoding:"jsonParsed", maxSupportedTransactionVersion:0, commitment:"confirmed" }
+      ]);
+      if (Array.isArray(txs)) out.push(...txs.filter(Boolean));
+    } catch(e) { console.warn(`chunk ${i}:`, e.message); }
+    if (i+CHUNK < sigs.length) await slp(150);
+  }
+  return out;
+}
+
+// ── Filter ORE ────────────────────────────────────────────────
+function isOreTx(tx) {
+  try {
+    return tx.transaction.message.accountKeys.some(k => {
+      const a = k?.pubkey || k;
+      return ORE_PROGRAMS.has(String(a));
+    });
+  } catch { return false; }
+}
+
+// ── Parse one tx ──────────────────────────────────────────────
+function parseTx(tx, wallet) {
+  const sig = tx.transaction.signatures[0];
+  const ts  = tx.blockTime || 0;
+  const fee = (tx.meta?.fee || 5000) / LAMPORTS;
+
+  const keys = (tx.transaction.message.accountKeys || []).map(k =>
+    typeof k==="string" ? k : (k?.pubkey?.toString?.() || String(k))
+  );
+  const wi = keys.indexOf(wallet);
+
+  // SOL change
+  let solChange = 0;
+  if (wi>=0 && tx.meta?.preBalances && tx.meta?.postBalances) {
+    solChange = (tx.meta.postBalances[wi] - tx.meta.preBalances[wi]) / LAMPORTS;
+  }
+
+  // ORE token change — by owner field first, then by accountIndex fallback
+  let oreChange = 0;
+  const pre  = tx.meta?.preTokenBalances  || [];
+  const post = tx.meta?.postTokenBalances || [];
+
+  for (const p of post) {
+    if (p.mint !== ORE_MINT) continue;
+    const owner = p.owner || "";
+    if (owner && owner !== wallet) continue;
+    const preE = pre.find(x => x.accountIndex===p.accountIndex && x.mint===ORE_MINT);
+    const pa = parseFloat(p.uiTokenAmount?.uiAmountString || "0");
+    const ra = parseFloat(preE?.uiTokenAmount?.uiAmountString || "0");
+    oreChange += pa - ra;
+  }
+
+  // classify
+  const bigOut = solChange < -0.0008;
+  const bigIn  = solChange >  0.0008;
+  let type = "ORE";
+  if      (bigOut && oreChange >= 0)        type = "MINE";
+  else if (bigIn)                           type = "WIN";
+  else if (oreChange >  0.00001)            type = "CLAIM";
+  else if (oreChange < -0.00001 && bigOut)  type = "REFINE";
+  else if (oreChange < -0.00001)            type = "STAKE";
+
+  const oreFee = (type==="REFINE"||type==="STAKE") ? Math.abs(oreChange) : 0;
+  return { sig, ts, type, solChange, oreChange, fee, oreFee };
+}
+
+// ── ORE balance ───────────────────────────────────────────────
+async function getOreBal(ep, wallet) {
+  try {
+    const r = await rpc(ep, "getTokenAccountsByOwner", [
+      wallet, { mint: ORE_MINT }, { encoding:"jsonParsed" }
+    ]);
+    if (!r?.value?.length) return 0;
+    return parseFloat(r.value[0].account.data.parsed?.info?.tokenAmount?.uiAmountString || "0");
+  } catch { return 0; }
+}
+
+// ── Aggregate ─────────────────────────────────────────────────
+function agg(txs) {
+  let deployed=0, withdrawn=0, count=0, solFees=0, oreFees=0, oreEarned=0;
+  for (const t of txs) {
+    count++; solFees+=t.fee; oreFees+=t.oreFee;
+    if (t.type==="MINE") deployed  += Math.abs(t.solChange);
+    if (t.type==="WIN")  withdrawn += t.solChange;
+    if (t.oreChange > 0) oreEarned += t.oreChange;
+  }
+  return { deployed, withdrawn, count, solFees, oreFees, oreEarned,
+           net: withdrawn - deployed - solFees };
+}
+
+// ── Render metrics ────────────────────────────────────────────
+function renderMetrics(s, oreBal) {
+  $("mg").innerHTML = `
+    <div class="mc">
+      <div class="ml"><span class="dot ds"></span>0 · Внесено SOL</div>
+      <div class="mv">${fmt(s.deployed,4)}<span class="mu2">SOL</span></div>
+      <div class="ms">Ставки у раундах ORE</div>
+    </div>
+    <div class="mc">
+      <div class="ml"><span class="dot dm"></span>1 · Кількість TX</div>
+      <div class="mv">${s.count}<span class="mu2">шт</span></div>
+      <div class="ms">ORE-транзакцій за период</div>
+    </div>
+    <div class="mc">
+      <div class="ml"><span class="dot dr"></span>2 · Комісії Solana</div>
+      <div class="mv">${fmt(s.solFees,5)}<span class="mu2">SOL</span></div>
+      <div class="ms">Network fees (incl. priority)</div>
+    </div>
+    <div class="mc">
+      <div class="ml"><span class="dot do"></span>3 · Комісії ORE</div>
+      <div class="mv">${fmt(s.oreFees,4)}<span class="mu2">ORE</span></div>
+      <div class="ms">Refine / stake outflow</div>
+    </div>
+    <div class="mc">
+      <div class="ml"><span class="dot dg"></span>4 · Виведено SOL</div>
+      <div class="mv">${fmt(s.withdrawn,4)}<span class="mu2">SOL</span></div>
+      <div class="ms">Виграші WIN</div>
+    </div>
+    <div class="mc">
+      <div class="ml"><span class="dot do"></span>5 · Баланс ORE</div>
+      <div class="mv">${fmt(oreBal,4)}<span class="mu2">ORE</span></div>
+      <div class="ms">Поточний баланс гаманця</div>
+    </div>`;
+
+  const p = s.net >= 0;
+  $("pnld").innerHTML = `
+    <div class="pnl">
+      <div>
+        <div class="pl">NET PnL (SOL)</div>
+        <div class="pv ${p?"pos":"neg"}">${p?"+":""}${fmt(s.net,4)} SOL</div>
+      </div>
+      <div class="pb">
+        Виведено:&nbsp;&nbsp;&nbsp;+${fmt(s.withdrawn,4)} SOL<br>
+        Внесено:&nbsp;&nbsp;&nbsp;&nbsp;−${fmt(s.deployed,4)} SOL<br>
+        Network fees: −${fmt(s.solFees,5)} SOL
+      </div>
+    </div>`;
+}
+
+// ── Render table ──────────────────────────────────────────────
+function renderTable(txs) {
+  const rows = txs.slice(0,200);
+  if (!rows.length) {
+    $("tb").innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:20px">Транзакцій не знайдено</td></tr>`;
+    return;
+  }
+  const TM = {
+    MINE:  ["bm","⛏ Mine"],   WIN:   ["bw","🏆 Win"],
+    CLAIM: ["bw","📥 Claim"], REFINE:["bo","🔥 Refine"],
+    STAKE: ["bo","🔒 Stake"], ORE:   ["bo","◎ ORE"],
+  };
+  $("tb").innerHTML = rows.map((t,i) => {
+    const [bc,bl] = TM[t.type] || ["bo",t.type];
+    const sc=t.solChange, oc=t.oreChange;
+    return `<tr>
+      <td class="m">${i+1}</td>
+      <td class="m">${fmtDate(t.ts)}</td>
+      <td><span class="badge ${bc}">${bl}</span></td>
+      <td class="${sc>0?"ap":sc<0?"an":"m"}">${sc>0?"+":""}${fmt(sc,5)}</td>
+      <td class="${oc>0?"ap":oc<0?"an":"m"}">${oc!==0?(oc>0?"+":"")+fmt(oc,4):"—"}</td>
+      <td class="an">−${fmt(t.fee,6)}</td>
+      <td><a class="ta" href="https://solscan.io/tx/${t.sig}" target="_blank">${t.sig.slice(0,8)}…${t.sig.slice(-5)}</a></td>
+    </tr>`;
+  }).join("");
+}
+
+// ── MAIN ──────────────────────────────────────────────────────
+async function run() {
+  const wallet = $("wallet").value.trim();
+  const ep     = $("rpc").value.trim();
+  const days   = parseInt($("preset").value);
+
+  if (!wallet) { se("Введіть адресу гаманця"); return; }
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)) {
+    se("Невалідна адреса Solana — перевірте формат"); return;
+  }
+  if (!ep) {
+    se("Введіть Helius RPC URL.\nОтримайте безкоштовно на dev.helius.xyz → Dashboard → RPC URL"); return;
+  }
+
+  se(""); sr(false);
+  const btn=$("btn"); btn.disabled=true; $("bt").textContent="Аналіз...";
+
+  try {
+    ss("Отримання списку транзакцій...");
+    const allSigs = await getSignatures(ep, wallet, days);
+
+    if (!allSigs.length) {
+      se("Транзакцій не знайдено. Спробуйте більший інтервал або перевірте адресу.");
+      ss("",false); return;
+    }
+
+    const parsed = await getParsedTxs(ep, allSigs);
+
+    ss("Фільтрація ORE-транзакцій...");
+    const oreTxs = parsed.filter(isOreTx);
+
+    if (!oreTxs.length) {
+      se("ORE-транзакцій не знайдено за цей период.\nСпробуйте «Всі TX» або перевірте що цей гаманець взаємодіяв з ore.supply.");
+      ss("",false); return;
+    }
+
+    ss("Розрахунок...");
+    const data   = oreTxs.map(t => parseTx(t, wallet)).sort((a,b) => b.ts-a.ts);
+    const stats  = agg(data);
+    const oreBal = await getOreBal(ep, wallet);
+
+    ss("",false);
+
+    const label = days===0 ? "всі TX" : `${days} днів`;
+    $("rw").textContent = wallet.slice(0,6)+"…"+wallet.slice(-5);
+    $("rt").textContent = label + " · " + oreTxs.length + " ORE TX";
+
+    renderMetrics(stats, oreBal);
+    renderTable(data);
+    sr(true);
+
+  } catch(e) {
+    ss("",false);
+    let msg = e.message || String(e);
+    if (msg.includes("Failed to fetch") || msg.toLowerCase().includes("network")) {
+      msg = "Не вдалося підключитись до RPC.\n→ Перевірте правильність Helius URL\n→ Переконайтесь що ключ активний на dev.helius.xyz";
+    }
+    if (msg.includes("401") || msg.includes("403")) msg = "Невірний API ключ (401/403). Перевірте URL на dev.helius.xyz";
+    if (msg.includes("429")) msg = "Перевищено ліміт запитів (429). Зачекайте хвилину.";
+    se("Помилка: " + msg);
+    console.error(e);
+  } finally {
+    btn.disabled=false; $("bt").textContent="Аналіз";
+  }
+}
+</script>
+</body>
+</html>
