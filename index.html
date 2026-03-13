@@ -9,117 +9,105 @@
 :root{
   --bg:#0a0a0a;--s:#111;--b:#1e1e1e;--b2:#2a2a2a;
   --ore:#f97316;--og:rgba(249,115,22,.12);--od:#7c3a0e;
-  --sol:#9945ff;--gn:#22c55e;--rd:#ef4444;
+  --gn:#22c55e;--rd:#ef4444;--sol:#9945ff;
   --tx:#e5e5e5;--mu:#555;--m2:#888;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:'Syne',sans-serif;min-height:100vh}
-a{color:var(--ore);text-decoration:none}
-a:hover{text-decoration:underline}
-
-header{border-bottom:1px solid var(--b);padding:15px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,10,10,.95);backdrop-filter:blur(10px);z-index:99}
-.logo{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;letter-spacing:-.4px}
-.li{width:26px;height:26px;background:var(--ore);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:14px}
+a{color:var(--ore)} a:hover{text-decoration:underline}
+header{border-bottom:1px solid var(--b);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,10,10,.96);backdrop-filter:blur(10px);z-index:99}
+.logo{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;letter-spacing:-.3px}
+.li{width:25px;height:25px;background:var(--ore);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px}
 .hn{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu)}
-
-main{max-width:860px;margin:0 auto;padding:32px 18px 70px}
-h1{font-size:24px;font-weight:800;letter-spacing:-.8px;margin-bottom:3px}
+main{max-width:860px;margin:0 auto;padding:30px 16px 70px}
+h1{font-size:22px;font-weight:800;letter-spacing:-.7px;margin-bottom:3px}
 h1 span{color:var(--ore)}
-.sub{color:var(--m2);font-size:12px;margin-bottom:28px;font-family:'Space Mono',monospace}
-
-.card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:22px;margin-bottom:20px}
-.ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--m2);margin-bottom:16px;font-family:'Space Mono',monospace}
-
-.row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:end}
-@media(max-width:580px){.row{grid-template-columns:1fr}}
+.sub{color:var(--m2);font-size:11px;margin-bottom:26px;font-family:'Space Mono',monospace}
+.card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:20px;margin-bottom:18px}
+.ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--m2);margin-bottom:14px;font-family:'Space Mono',monospace}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:end}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
 .f{display:flex;flex-direction:column;gap:4px}
 .f label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);font-family:'Space Mono',monospace}
-.f input,.f select{background:var(--bg);border:1px solid var(--b2);border-radius:6px;color:var(--tx);font-family:'Space Mono',monospace;font-size:12px;padding:9px 12px;outline:none;transition:border-color .15s;width:100%}
+.f input,.f select{background:var(--bg);border:1px solid var(--b2);border-radius:6px;color:var(--tx);font-family:'Space Mono',monospace;font-size:12px;padding:9px 11px;outline:none;transition:border-color .15s;width:100%}
 .f input:focus,.f select:focus{border-color:var(--ore)}
 .f input::placeholder{color:var(--mu)}
 .f select option{background:#1a1a1a}
-
-.rpc-sec{margin-top:14px;padding-top:14px;border-top:1px solid var(--b)}
+.sep{margin-top:13px;padding-top:13px;border-top:1px solid var(--b)}
 .hint{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu);margin-top:5px;line-height:1.65}
 .hint code{color:var(--ore);background:rgba(249,115,22,.08);padding:1px 4px;border-radius:3px}
-
-.btn{background:var(--ore);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:9px 22px;cursor:pointer;transition:opacity .15s,transform .1s;height:38px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.btn{background:var(--ore);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:8px 20px;cursor:pointer;transition:opacity .15s,transform .1s;height:37px;display:flex;align-items:center;gap:5px;white-space:nowrap}
 .btn:hover{opacity:.85} .btn:active{transform:scale(.97)} .btn:disabled{opacity:.35;cursor:not-allowed}
-
-.sb{display:none;background:var(--s);border:1px solid var(--b);border-radius:6px;padding:11px 15px;margin-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--m2);gap:8px;align-items:center}
+.btn-sm{background:transparent;color:var(--m2);border:1px solid var(--b2);border-radius:5px;font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;cursor:pointer;transition:all .15s}
+.btn-sm:hover{border-color:var(--ore);color:var(--ore)}
+.sb{display:none;background:var(--s);border:1px solid var(--b);border-radius:6px;padding:10px 14px;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--m2);gap:8px;align-items:center}
 .sb.on{display:flex}
-.spin{width:12px;height:12px;border:2px solid var(--b2);border-top-color:var(--ore);border-radius:50%;animation:sp .65s linear infinite;flex-shrink:0}
+.spin{width:11px;height:11px;border:2px solid var(--b2);border-top-color:var(--ore);border-radius:50%;animation:sp .65s linear infinite;flex-shrink:0}
 @keyframes sp{to{transform:rotate(360deg)}}
-
-.eb{display:none;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);border-radius:6px;padding:12px 15px;margin-bottom:16px;font-family:'Space Mono',monospace;font-size:11px;color:#fca5a5;line-height:1.65;white-space:pre-wrap}
+.eb{display:none;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);border-radius:6px;padding:11px 14px;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:11px;color:#fca5a5;line-height:1.65;white-space:pre-wrap}
 .eb.on{display:block}
-
+.debug-box{display:none;background:rgba(153,69,255,.06);border:1px solid rgba(153,69,255,.2);border-radius:6px;padding:12px 14px;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:10px;color:#c4b5fd;line-height:1.8;word-break:break-all}
+.debug-box.on{display:block}
+.debug-box strong{color:#e9d5ff}
 #res{display:none} #res.on{display:block}
-.rh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:6px}
+.rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:6px}
 .rh h2{font-size:14px;font-weight:700}
-.wt{font-family:'Space Mono',monospace;font-size:10px;color:var(--ore);background:var(--og);border:1px solid var(--od);border-radius:3px;padding:2px 7px;word-break:break-all}
-.range-tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);border:1px solid var(--b2);border-radius:3px;padding:2px 7px}
-
-.g6{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:9px}
-@media(max-width:560px){.g6{grid-template-columns:1fr 1fr}}
-.mc{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:14px}
-.ml{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.1px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:7px;display:flex;align-items:center;gap:4px}
-.dot{width:5px;height:5px;border-radius:50%}
+.tags{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.tag{font-family:'Space Mono',monospace;font-size:10px;border-radius:3px;padding:2px 6px}
+.tag-o{color:var(--ore);background:var(--og);border:1px solid var(--od)}
+.tag-d{color:var(--m2);border:1px solid var(--b2)}
+.g6{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+@media(max-width:540px){.g6{grid-template-columns:1fr 1fr}}
+.mc{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:13px}
+.ml{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:6px;display:flex;align-items:center;gap:3px}
+.dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .ds{background:var(--sol)} .do{background:var(--ore)} .dg{background:var(--gn)} .dr{background:var(--rd)} .dm{background:var(--mu)}
-.mv{font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1}
+.mv{font-size:18px;font-weight:800;letter-spacing:-.3px;line-height:1}
 .mu2{font-size:10px;font-weight:600;margin-left:2px;opacity:.5}
 .ms{font-family:'Space Mono',monospace;font-size:9px;color:var(--mu);margin-top:3px}
-
-.pnl{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
-.pl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:3px}
-.pv{font-size:26px;font-weight:800;letter-spacing:-.8px}
+.pnl{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-bottom:14px}
+.pl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:3px}
+.pv{font-size:24px;font-weight:800;letter-spacing:-.7px}
 .pos{color:var(--gn)} .neg{color:var(--rd)}
 .pb{font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);text-align:right;line-height:1.7}
-
-.st2{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:9px;margin-top:22px}
+.stl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:8px;margin-top:20px}
 .tw{overflow-x:auto;border:1px solid var(--b);border-radius:8px}
 table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:11px}
-thead th{background:var(--s);padding:8px 12px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);border-bottom:1px solid var(--b);white-space:nowrap}
+thead th{background:var(--s);padding:8px 11px;text-align:left;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);border-bottom:1px solid var(--b);white-space:nowrap}
 tbody tr{border-bottom:1px solid var(--b);transition:background .1s}
 tbody tr:last-child{border-bottom:none}
 tbody tr:hover{background:rgba(255,255,255,.02)}
-td{padding:7px 12px;vertical-align:middle;white-space:nowrap}
+td{padding:7px 11px;vertical-align:middle;white-space:nowrap}
 td.m{color:var(--m2)}
 .badge{display:inline-flex;align-items:center;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;text-transform:uppercase}
 .bm{background:rgba(249,115,22,.13);color:#fb923c;border:1px solid rgba(249,115,22,.2)}
 .bw{background:rgba(34,197,94,.11);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
 .bo{background:rgba(100,100,100,.11);color:#9ca3af;border:1px solid rgba(100,100,100,.18)}
+.bp{background:rgba(153,69,255,.11);color:#c084fc;border:1px solid rgba(153,69,255,.2)}
 .ap{color:var(--gn)} .an{color:#f87171}
-.ta{color:var(--ore);text-decoration:none;font-size:10px}
-.ta:hover{text-decoration:underline}
-
-.nt{background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.13);border-radius:6px;padding:11px 15px;margin-top:20px;font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);line-height:1.75}
+.ta{color:var(--ore);text-decoration:none;font-size:10px} .ta:hover{text-decoration:underline}
+.nt{background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.12);border-radius:6px;padding:10px 14px;margin-top:18px;font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);line-height:1.75}
 .nt strong{color:var(--ore)}
-
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--s)}
 ::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo"><div class="li">⛏</div>ORE Analytics</div>
   <span class="hn">Solana · ORE V2 · ore.supply</span>
 </header>
-
 <main>
   <h1>Wallet <span>ORE</span> Stats</h1>
   <p class="sub">// Статистика гаманця в межах протоколу ore.supply</p>
 
   <div class="card">
-    <div class="ct">⚙ Параметри запиту</div>
+    <div class="ct">⚙ Параметри</div>
     <div class="row">
       <div class="f">
         <label>Адреса гаманця Solana</label>
-        <input id="wallet" type="text"
-          placeholder="7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU"
-          spellcheck="false" autocomplete="off">
+        <input id="wallet" type="text" placeholder="вставте адресу гаманця..." spellcheck="false" autocomplete="off">
       </div>
       <div class="f">
         <label>Інтервал</label>
@@ -135,16 +123,13 @@ td.m{color:var(--m2)}
         <span id="bt">Аналіз</span><span>→</span>
       </button>
     </div>
-
-    <div class="rpc-sec">
+    <div class="sep">
       <div class="f">
-        <label>Helius RPC (обов'язково)</label>
-        <input id="rpc" type="text"
-          placeholder="https://mainnet.helius-rpc.com/?api-key=ВАШ_КЛЮЧ">
+        <label>Helius API Key</label>
+        <input id="apikey" type="password" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
         <p class="hint">
-          1. Зареєструйтесь на <a href="https://dev.helius.xyz" target="_blank">dev.helius.xyz</a> (безкоштовно, email достатньо)<br>
-          2. Скопіюйте RPC URL → вставте сюди<br>
-          3. Виглядає так: <code>https://mainnet.helius-rpc.com/?api-key=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>
+          Тільки UUID ключ: <a href="https://dev.helius.xyz" target="_blank">dev.helius.xyz</a> → Dashboard → API Keys<br>
+          Приклад: <code>e54d58a4-3822-4a02-bdd1-9cc732c15692</code>
         </p>
       </div>
     </div>
@@ -152,254 +137,245 @@ td.m{color:var(--m2)}
 
   <div class="sb" id="sb"><div class="spin"></div><span id="st">...</span></div>
   <div class="eb" id="eb"></div>
+  <div class="debug-box" id="dbg"></div>
 
   <div id="res">
     <div class="rh">
       <h2>Результати</h2>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">
-        <span class="wt" id="rw"></span>
-        <span class="range-tag" id="rt"></span>
+      <div class="tags">
+        <span class="tag tag-o" id="rw"></span>
+        <span class="tag tag-d" id="rt"></span>
+        <button class="btn-sm" onclick="toggleDebug()">🔍 debug</button>
       </div>
     </div>
-
     <div class="g6" id="mg"></div>
     <div id="pnld"></div>
-
-    <p class="st2">📋 ORE транзакції (до 200 записів)</p>
+    <p class="stl">📋 ORE транзакції</p>
     <div class="tw">
       <table>
         <thead><tr>
-          <th>#</th><th>Дата / час</th><th>Тип</th>
+          <th>#</th><th>Дата</th><th>Тип</th>
           <th>SOL зміна</th><th>ORE зміна</th><th>Fee SOL</th><th>TX</th>
         </tr></thead>
         <tbody id="tb"></tbody>
       </table>
     </div>
-
-    <div class="nt">
-      <strong>Примітки:</strong><br>
-      • ORE V2 program: <strong>oreV2ZymfyeXgNgBdqMkumTqqAprVqgBxpC66AYkpe</strong><br>
-      • ORE SPL mint: <strong>oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz</strong><br>
-      • "Внесено SOL" = MINE транзакції (ставки в раунди) · "Виведено SOL" = WIN (виграші)<br>
-      • "Комісії ORE" = від'ємний outflow ORE токену (refine ~10%)<br>
-      • NET PnL = Виведено − Внесено − Мережеві fees
-    </div>
+    <div class="nt" id="note"></div>
   </div>
 </main>
 
 <script>
-// ── Constants ────────────────────────────────────────────────
-const ORE_PROGRAMS = new Set([
-  "oreV2ZymfyeXgNgBdqMkumTqqAprVqgBxpC66AYkpe",
-  "ore4vZHMxoBbJ6GBHoDAFqpSGJC8sEHRjj5v6Cz2Bq8",
-  "orePrYs9PVJG4PaSwFMbMacjzpRmVH3EMBe7hVyoLRm",
-  "mineXqpDeBeMR8bPQCyy9UneJZbjFywraS3koWZ8SSH",
-]);
-const ORE_MINT = "oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz";
 const LAMPORTS = 1_000_000_000;
+const ORE_MINT_V1 = "oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz";
 
-// ── UI ────────────────────────────────────────────────────────
+// ─── UI ───────────────────────────────────────────────────────
 const $   = id => document.getElementById(id);
-const ss  = (t, on=true) => { $("sb").classList.toggle("on",on); $("st").textContent=t; };
-const se  = t => { const b=$("eb"); b.textContent=t; b.classList.toggle("on",!!t); };
+const ss  = (t,on=true) => { $("sb").classList.toggle("on",on); $("st").textContent=t; };
+const se  = t => { $("eb").textContent=t; $("eb").classList.toggle("on",!!t); };
 const sr  = v => $("res").classList.toggle("on",v);
 const fmt = (n,d=4) => Number(n).toFixed(d);
 const slp = ms => new Promise(r=>setTimeout(r,ms));
-
-function fmtDate(ts) {
-  const d = new Date(ts * 1000);
-  return d.toLocaleDateString("uk-UA",{day:"2-digit",month:"2-digit",year:"2-digit"})
-       + " " + d.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});
-}
+let _dbg  = {};
 
 $("wallet").addEventListener("keydown", e => { if(e.key==="Enter") run(); });
 
-// ── JSON-RPC ──────────────────────────────────────────────────
-let _id = 1;
-async function rpc(ep, method, params=[]) {
-  const r = await fetch(ep, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ jsonrpc:"2.0", id:_id++, method, params }),
-  });
-  if (!r.ok) throw new Error(`HTTP ${r.status}`);
-  const j = await r.json();
-  if (j.error) throw new Error(j.error.message || JSON.stringify(j.error));
-  return j.result;
+function toggleDebug() {
+  const b = $("dbg");
+  if (b.classList.contains("on")) { b.classList.remove("on"); return; }
+  b.innerHTML =
+    `<strong>🔍 Debug</strong><br><br>` +
+    `Всього TX завантажено: <strong>${_dbg.total||0}</strong><br>` +
+    `ORE TX після фільтру: <strong>${_dbg.ore||0}</strong><br><br>` +
+    `<strong>Приклади description перших 20 TX:</strong><br>` +
+    (_dbg.descs||[]).map(d=>`• ${d}`).join("<br>");
+  b.classList.add("on");
 }
 
-// ── Fetch signatures ──────────────────────────────────────────
-async function getSignatures(ep, address, days) {
-  const raw = await rpc(ep, "getSignaturesForAddress", [address, { limit: 1000 }]);
-  if (!Array.isArray(raw)) return [];
-  if (days === 0) return raw;
-  const cutoff = Math.floor(Date.now()/1000) - days*86400;
-  return raw.filter(s => s.blockTime && s.blockTime >= cutoff);
+function fmtDate(ts) {
+  const d = new Date(ts*1000);
+  return d.toLocaleDateString("uk-UA",{day:"2-digit",month:"2-digit",year:"2-digit"})
+        +" "+d.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});
 }
 
-// ── Fetch parsed transactions ─────────────────────────────────
-async function getParsedTxs(ep, sigs) {
-  const out = [];
-  const CHUNK = 10;
-  for (let i=0; i<sigs.length; i+=CHUNK) {
-    const chunk = sigs.slice(i, i+CHUNK).map(s => s.signature);
-    ss(`Завантаження ${i+1}–${Math.min(i+CHUNK,sigs.length)} з ${sigs.length} TX…`);
-    try {
-      const txs = await rpc(ep, "getParsedTransactions", [
-        chunk,
-        { encoding:"jsonParsed", maxSupportedTransactionVersion:0, commitment:"confirmed" }
-      ]);
-      if (Array.isArray(txs)) out.push(...txs.filter(Boolean));
-    } catch(e) { console.warn(`chunk ${i}:`, e.message); }
-    if (i+CHUNK < sigs.length) await slp(150);
+// ─── Helius Enhanced API ──────────────────────────────────────
+async function fetchPage(wallet, key, before=null) {
+  let url = `https://api.helius.xyz/v0/addresses/${wallet}/transactions?api-key=${key}&limit=100`;
+  if (before) url += `&before=${before}`;
+  const r = await fetch(url);
+  if (!r.ok) {
+    const t = await r.text().catch(()=>"");
+    throw new Error(`HTTP ${r.status}${t?": "+t.slice(0,100):""}`);
   }
-  return out;
+  return r.json();
 }
 
-// ── Filter ORE ────────────────────────────────────────────────
+async function fetchAll(wallet, key, days) {
+  const cutoff = days===0 ? 0 : Math.floor(Date.now()/1000) - days*86400;
+  const all=[]; let before=null, page=0;
+  while (page < 10) {
+    ss(`Завантаження сторінка ${page+1}...`);
+    const batch = await fetchPage(wallet, key, before);
+    if (!Array.isArray(batch)||!batch.length) break;
+    let stop=false;
+    for (const tx of batch) {
+      if (cutoff && tx.timestamp && tx.timestamp < cutoff) { stop=true; break; }
+      all.push(tx);
+    }
+    if (stop || batch.length < 100) break;
+    before = batch[batch.length-1].signature;
+    page++;
+    await slp(200);
+  }
+  return all;
+}
+
+// ─── ORE detection — по description (найнадійніший спосіб) ───
+// Helius повертає description типу "Ore: CheckPoint", "Ore: Regolith Executor" тощо
 function isOreTx(tx) {
-  try {
-    return tx.transaction.message.accountKeys.some(k => {
-      const a = k?.pubkey || k;
-      return ORE_PROGRAMS.has(String(a));
-    });
-  } catch { return false; }
+  // 1. description містить "Ore:" або "ore:"
+  if (tx.description) {
+    if (/\bore[:\s]/i.test(tx.description)) return true;
+    if (/regolith/i.test(tx.description)) return true;
+    if (/checkpoint/i.test(tx.description) && /ore/i.test(tx.description)) return true;
+  }
+  // 2. source = "ORE" (якщо Helius розпарсив)
+  if (tx.source && /ore/i.test(tx.source)) return true;
+  // 3. tokenTransfers містять ORE mint
+  for (const tt of (tx.tokenTransfers||[])) {
+    if (tt.mint === ORE_MINT_V1) return true;
+    // V2 mint — пошук за prefix або symbol
+    if (typeof tt.mint === "string" &&
+        (tt.mint.startsWith("ore") || tt.mint.startsWith("ORE"))) return true;
+  }
+  // 4. accountData містить ORE mint
+  for (const ad of (tx.accountData||[])) {
+    if (ad.account === ORE_MINT_V1) return true;
+  }
+  // 5. events.compressed або інші події з ORE
+  if (tx.events) {
+    const ev = JSON.stringify(tx.events);
+    if (/ore/i.test(ev)) return true;
+  }
+  return false;
 }
 
-// ── Parse one tx ──────────────────────────────────────────────
+// ─── Parse TX ─────────────────────────────────────────────────
 function parseTx(tx, wallet) {
-  const sig = tx.transaction.signatures[0];
-  const ts  = tx.blockTime || 0;
-  const fee = (tx.meta?.fee || 5000) / LAMPORTS;
+  const sig = tx.signature;
+  const ts  = tx.timestamp || 0;
+  const fee = (tx.fee || 5000) / LAMPORTS;
 
-  const keys = (tx.transaction.message.accountKeys || []).map(k =>
-    typeof k==="string" ? k : (k?.pubkey?.toString?.() || String(k))
-  );
-  const wi = keys.indexOf(wallet);
-
-  // SOL change
+  // SOL change з accountData
   let solChange = 0;
-  if (wi>=0 && tx.meta?.preBalances && tx.meta?.postBalances) {
-    solChange = (tx.meta.postBalances[wi] - tx.meta.preBalances[wi]) / LAMPORTS;
+  for (const ad of (tx.accountData||[])) {
+    if (ad.account === wallet) {
+      solChange = (ad.nativeBalanceChange||0) / LAMPORTS;
+      break;
+    }
   }
 
-  // ORE token change — by owner field first, then by accountIndex fallback
+  // ORE token change з tokenTransfers
   let oreChange = 0;
-  const pre  = tx.meta?.preTokenBalances  || [];
-  const post = tx.meta?.postTokenBalances || [];
-
-  for (const p of post) {
-    if (p.mint !== ORE_MINT) continue;
-    const owner = p.owner || "";
-    if (owner && owner !== wallet) continue;
-    const preE = pre.find(x => x.accountIndex===p.accountIndex && x.mint===ORE_MINT);
-    const pa = parseFloat(p.uiTokenAmount?.uiAmountString || "0");
-    const ra = parseFloat(preE?.uiTokenAmount?.uiAmountString || "0");
-    oreChange += pa - ra;
+  for (const tt of (tx.tokenTransfers||[])) {
+    // знаходимо ORE токен (V1 mint або будь-який ore* mint)
+    const isOre = tt.mint === ORE_MINT_V1 ||
+      (typeof tt.mint==="string" && tt.mint.toLowerCase().startsWith("ore"));
+    if (!isOre) continue;
+    const amt = parseFloat(tt.tokenAmount||0);
+    if (tt.toUserAccount  === wallet) oreChange += amt;
+    if (tt.fromUserAccount === wallet) oreChange -= amt;
   }
 
-  // classify
-  const bigOut = solChange < -0.0008;
-  const bigIn  = solChange >  0.0008;
+  // Classify
+  // ore.supply V2: MINE = великий outflow SOL (ставка), WIN = великий inflow SOL (виграш)
+  const bigOut = solChange < -0.0005;
+  const bigIn  = solChange >  0.0005;
   let type = "ORE";
-  if      (bigOut && oreChange >= 0)        type = "MINE";
-  else if (bigIn)                           type = "WIN";
-  else if (oreChange >  0.00001)            type = "CLAIM";
-  else if (oreChange < -0.00001 && bigOut)  type = "REFINE";
-  else if (oreChange < -0.00001)            type = "STAKE";
+  if      (bigOut && Math.abs(oreChange) < 0.0001) type = "MINE";
+  else if (bigIn  && Math.abs(oreChange) < 0.0001) type = "WIN";
+  else if (oreChange >  0.0001)                    type = "CLAIM";
+  else if (oreChange < -0.0001 && bigOut)          type = "REFINE";
+  else if (oreChange < -0.0001)                    type = "STAKE";
 
+  // ORE fee = outflow ORE при refine (протокол бере ~10%)
   const oreFee = (type==="REFINE"||type==="STAKE") ? Math.abs(oreChange) : 0;
   return { sig, ts, type, solChange, oreChange, fee, oreFee };
 }
 
-// ── ORE balance ───────────────────────────────────────────────
-async function getOreBal(ep, wallet) {
+// ─── ORE balance ──────────────────────────────────────────────
+async function getOreBal(wallet, key) {
   try {
-    const r = await rpc(ep, "getTokenAccountsByOwner", [
-      wallet, { mint: ORE_MINT }, { encoding:"jsonParsed" }
-    ]);
-    if (!r?.value?.length) return 0;
-    return parseFloat(r.value[0].account.data.parsed?.info?.tokenAmount?.uiAmountString || "0");
+    const r = await fetch(`https://api.helius.xyz/v0/addresses/${wallet}/balances?api-key=${key}`);
+    if (!r.ok) return 0;
+    const d = await r.json();
+    // шукаємо ORE серед токенів
+    for (const t of (d.tokens||[])) {
+      if (t.mint === ORE_MINT_V1) return t.amount / Math.pow(10, t.decimals||11);
+      if (typeof t.mint==="string" && t.mint.toLowerCase().startsWith("ore") && t.mint !== ORE_MINT_V1)
+        return t.amount / Math.pow(10, t.decimals||11);
+    }
+    return 0;
   } catch { return 0; }
 }
 
-// ── Aggregate ─────────────────────────────────────────────────
+// ─── Aggregate ────────────────────────────────────────────────
 function agg(txs) {
-  let deployed=0, withdrawn=0, count=0, solFees=0, oreFees=0, oreEarned=0;
+  let deployed=0,withdrawn=0,count=0,solFees=0,oreFees=0,oreEarned=0;
   for (const t of txs) {
     count++; solFees+=t.fee; oreFees+=t.oreFee;
     if (t.type==="MINE") deployed  += Math.abs(t.solChange);
     if (t.type==="WIN")  withdrawn += t.solChange;
-    if (t.oreChange > 0) oreEarned += t.oreChange;
+    if (t.oreChange>0)   oreEarned += t.oreChange;
   }
-  return { deployed, withdrawn, count, solFees, oreFees, oreEarned,
-           net: withdrawn - deployed - solFees };
+  return { deployed,withdrawn,count,solFees,oreFees,oreEarned,
+           net: withdrawn-deployed-solFees };
 }
 
-// ── Render metrics ────────────────────────────────────────────
+// ─── Render ───────────────────────────────────────────────────
 function renderMetrics(s, oreBal) {
   $("mg").innerHTML = `
-    <div class="mc">
-      <div class="ml"><span class="dot ds"></span>0 · Внесено SOL</div>
+    <div class="mc"><div class="ml"><span class="dot ds"></span>0 · Внесено SOL</div>
       <div class="mv">${fmt(s.deployed,4)}<span class="mu2">SOL</span></div>
-      <div class="ms">Ставки у раундах ORE</div>
-    </div>
-    <div class="mc">
-      <div class="ml"><span class="dot dm"></span>1 · Кількість TX</div>
+      <div class="ms">Ставки у раундах ORE</div></div>
+    <div class="mc"><div class="ml"><span class="dot dm"></span>1 · Кількість TX</div>
       <div class="mv">${s.count}<span class="mu2">шт</span></div>
-      <div class="ms">ORE-транзакцій за период</div>
-    </div>
-    <div class="mc">
-      <div class="ml"><span class="dot dr"></span>2 · Комісії Solana</div>
+      <div class="ms">ORE-транзакцій за период</div></div>
+    <div class="mc"><div class="ml"><span class="dot dr"></span>2 · Комісії Solana</div>
       <div class="mv">${fmt(s.solFees,5)}<span class="mu2">SOL</span></div>
-      <div class="ms">Network fees (incl. priority)</div>
-    </div>
-    <div class="mc">
-      <div class="ml"><span class="dot do"></span>3 · Комісії ORE</div>
+      <div class="ms">Network fees (incl. priority)</div></div>
+    <div class="mc"><div class="ml"><span class="dot do"></span>3 · Комісії ORE</div>
       <div class="mv">${fmt(s.oreFees,4)}<span class="mu2">ORE</span></div>
-      <div class="ms">Refine / stake outflow</div>
-    </div>
-    <div class="mc">
-      <div class="ml"><span class="dot dg"></span>4 · Виведено SOL</div>
+      <div class="ms">Refine / stake outflow</div></div>
+    <div class="mc"><div class="ml"><span class="dot dg"></span>4 · Виведено SOL</div>
       <div class="mv">${fmt(s.withdrawn,4)}<span class="mu2">SOL</span></div>
-      <div class="ms">Виграші WIN</div>
-    </div>
-    <div class="mc">
-      <div class="ml"><span class="dot do"></span>5 · Баланс ORE</div>
+      <div class="ms">Виграші WIN</div></div>
+    <div class="mc"><div class="ml"><span class="dot do"></span>5 · Баланс ORE</div>
       <div class="mv">${fmt(oreBal,4)}<span class="mu2">ORE</span></div>
-      <div class="ms">Поточний баланс гаманця</div>
-    </div>`;
-
-  const p = s.net >= 0;
-  $("pnld").innerHTML = `
-    <div class="pnl">
-      <div>
-        <div class="pl">NET PnL (SOL)</div>
-        <div class="pv ${p?"pos":"neg"}">${p?"+":""}${fmt(s.net,4)} SOL</div>
-      </div>
-      <div class="pb">
-        Виведено:&nbsp;&nbsp;&nbsp;+${fmt(s.withdrawn,4)} SOL<br>
-        Внесено:&nbsp;&nbsp;&nbsp;&nbsp;−${fmt(s.deployed,4)} SOL<br>
-        Network fees: −${fmt(s.solFees,5)} SOL
-      </div>
-    </div>`;
+      <div class="ms">Поточний баланс гаманця</div></div>`;
+  const p=s.net>=0;
+  $("pnld").innerHTML=`<div class="pnl">
+    <div>
+      <div class="pl">NET PnL (SOL)</div>
+      <div class="pv ${p?"pos":"neg"}">${p?"+":""}${fmt(s.net,4)} SOL</div>
+    </div>
+    <div class="pb">
+      Виведено:&nbsp;&nbsp;+${fmt(s.withdrawn,4)} SOL<br>
+      Внесено:&nbsp;&nbsp;&nbsp;−${fmt(s.deployed,4)} SOL<br>
+      Network fees: −${fmt(s.solFees,5)} SOL
+    </div></div>`;
 }
 
-// ── Render table ──────────────────────────────────────────────
 function renderTable(txs) {
-  const rows = txs.slice(0,200);
+  const rows=txs.slice(0,200);
   if (!rows.length) {
-    $("tb").innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:20px">Транзакцій не знайдено</td></tr>`;
+    $("tb").innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:20px">Немає записів</td></tr>`;
     return;
   }
-  const TM = {
-    MINE:  ["bm","⛏ Mine"],   WIN:   ["bw","🏆 Win"],
-    CLAIM: ["bw","📥 Claim"], REFINE:["bo","🔥 Refine"],
-    STAKE: ["bo","🔒 Stake"], ORE:   ["bo","◎ ORE"],
-  };
-  $("tb").innerHTML = rows.map((t,i) => {
-    const [bc,bl] = TM[t.type] || ["bo",t.type];
-    const sc=t.solChange, oc=t.oreChange;
+  const TM={MINE:["bm","⛏ Mine"],WIN:["bw","🏆 Win"],CLAIM:["bw","📥 Claim"],
+            REFINE:["bo","🔥 Refine"],STAKE:["bp","🔒 Stake"],ORE:["bo","◎ ORE"]};
+  $("tb").innerHTML=rows.map((t,i)=>{
+    const [bc,bl]=TM[t.type]||["bo",t.type];
+    const sc=t.solChange,oc=t.oreChange;
     return `<tr>
       <td class="m">${i+1}</td>
       <td class="m">${fmtDate(t.ts)}</td>
@@ -412,67 +388,73 @@ function renderTable(txs) {
   }).join("");
 }
 
-// ── MAIN ──────────────────────────────────────────────────────
+// ─── MAIN ─────────────────────────────────────────────────────
 async function run() {
   const wallet = $("wallet").value.trim();
-  const ep     = $("rpc").value.trim();
+  const apiKey = $("apikey").value.trim();
   const days   = parseInt($("preset").value);
 
   if (!wallet) { se("Введіть адресу гаманця"); return; }
-  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)) {
-    se("Невалідна адреса Solana — перевірте формат"); return;
-  }
-  if (!ep) {
-    se("Введіть Helius RPC URL.\nОтримайте безкоштовно на dev.helius.xyz → Dashboard → RPC URL"); return;
+  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(wallet)) { se("Невалідна адреса Solana"); return; }
+  if (!apiKey || apiKey.includes("http")) {
+    se("Введіть тільки API KEY (UUID без URL).\nПриклад: e54d58a4-3822-4a02-bdd1-9cc732c15692"); return;
   }
 
-  se(""); sr(false);
-  const btn=$("btn"); btn.disabled=true; $("bt").textContent="Аналіз...";
+  se(""); sr(false); $("dbg").classList.remove("on");
+  const btn=$("btn"); btn.disabled=true; $("bt").textContent="...";
 
   try {
-    ss("Отримання списку транзакцій...");
-    const allSigs = await getSignatures(ep, wallet, days);
+    const allTx = await fetchAll(wallet, apiKey, days);
 
-    if (!allSigs.length) {
-      se("Транзакцій не знайдено. Спробуйте більший інтервал або перевірте адресу.");
-      ss("",false); return;
-    }
+    // debug: зберігаємо перші 20 descriptions
+    _dbg = {
+      total: allTx.length,
+      descs: allTx.slice(0,20).map(t => t.description||"(no description)"),
+    };
 
-    const parsed = await getParsedTxs(ep, allSigs);
-
-    ss("Фільтрація ORE-транзакцій...");
-    const oreTxs = parsed.filter(isOreTx);
+    ss("Фільтрація ORE транзакцій...");
+    const oreTxs = allTx.filter(isOreTx);
+    _dbg.ore = oreTxs.length;
 
     if (!oreTxs.length) {
-      se("ORE-транзакцій не знайдено за цей период.\nСпробуйте «Всі TX» або перевірте що цей гаманець взаємодіяв з ore.supply.");
+      // показуємо debug автоматично щоб зрозуміти чому не знайдено
+      $("rw").textContent = wallet.slice(0,6)+"…"+wallet.slice(-5);
+      $("rt").textContent = `${allTx.length} TX · 0 ORE`;
+      $("mg").innerHTML=""; $("pnld").innerHTML="";
+      $("tb").innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:20px">
+        ORE TX не знайдено — перевір debug нижче</td></tr>`;
+      $("note").innerHTML="";
+      sr(true);
+      // auto-show debug
+      toggleDebug();
+      se(`Знайдено ${allTx.length} TX, але жодного з ORE.\nДивись debug нижче — потрібно надіслати приклад description.`);
       ss("",false); return;
     }
 
-    ss("Розрахунок...");
-    const data   = oreTxs.map(t => parseTx(t, wallet)).sort((a,b) => b.ts-a.ts);
+    ss("Розрахунок балансу...");
+    const data   = oreTxs.map(t=>parseTx(t,wallet)).sort((a,b)=>b.ts-a.ts);
     const stats  = agg(data);
-    const oreBal = await getOreBal(ep, wallet);
+    const oreBal = await getOreBal(wallet, apiKey);
 
     ss("",false);
-
-    const label = days===0 ? "всі TX" : `${days} днів`;
+    const lbl = days===0?"всі TX":`${days} днів`;
     $("rw").textContent = wallet.slice(0,6)+"…"+wallet.slice(-5);
-    $("rt").textContent = label + " · " + oreTxs.length + " ORE TX";
-
+    $("rt").textContent = `${lbl} · ${oreTxs.length} ORE TX`;
     renderMetrics(stats, oreBal);
     renderTable(data);
+
+    const byType = data.reduce((a,t)=>{a[t.type]=(a[t.type]||0)+1;return a},{});
+    $("note").innerHTML = `<strong>Типи TX:</strong> `
+      + Object.entries(byType).map(([k,v])=>`${k}:${v}`).join(" · ");
     sr(true);
 
   } catch(e) {
     ss("",false);
-    let msg = e.message || String(e);
-    if (msg.includes("Failed to fetch") || msg.toLowerCase().includes("network")) {
-      msg = "Не вдалося підключитись до RPC.\n→ Перевірте правильність Helius URL\n→ Переконайтесь що ключ активний на dev.helius.xyz";
-    }
-    if (msg.includes("401") || msg.includes("403")) msg = "Невірний API ключ (401/403). Перевірте URL на dev.helius.xyz";
-    if (msg.includes("429")) msg = "Перевищено ліміт запитів (429). Зачекайте хвилину.";
-    se("Помилка: " + msg);
-    console.error(e);
+    let m=e.message||String(e);
+    if (m.includes("401")) m="Невірний API ключ (401). Перевірте на dev.helius.xyz";
+    if (m.includes("429")) m="Ліміт запитів (429). Зачекайте хвилину.";
+    if (m.includes("403")) m="Доступ заборонено (403). Перевірте ключ.";
+    se("Помилка: "+m); console.error(e);
   } finally {
     btn.disabled=false; $("bt").textContent="Аналіз";
   }
