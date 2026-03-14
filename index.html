@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ORE Analytics — ore.supply stats</title>
+<title>ORE Analytics</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
 :root{
@@ -16,83 +16,61 @@
 body{background:var(--bg);color:var(--tx);font-family:'Syne',sans-serif;min-height:100vh}
 a{color:var(--ore)} a:hover{text-decoration:underline}
 header{border-bottom:1px solid var(--b);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(10,10,10,.96);backdrop-filter:blur(10px);z-index:99}
-.logo{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;letter-spacing:-.3px}
+.logo{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800}
 .li{width:25px;height:25px;background:var(--ore);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px}
 .hn{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu)}
-main{max-width:940px;margin:0 auto;padding:28px 16px 70px}
+main{max-width:960px;margin:0 auto;padding:28px 16px 70px}
 h1{font-size:22px;font-weight:800;letter-spacing:-.7px;margin-bottom:3px}
 h1 span{color:var(--ore)}
 .sub{color:var(--m2);font-size:11px;margin-bottom:22px;font-family:'Space Mono',monospace}
-
 .card{background:var(--s);border:1px solid var(--b);border-radius:10px;padding:20px;margin-bottom:16px}
 .ct{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--m2);margin-bottom:14px;font-family:'Space Mono',monospace}
 .f{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
-.f:last-child{margin-bottom:0}
 .f label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);font-family:'Space Mono',monospace}
 .f input,.f select{background:var(--bg);border:1px solid var(--b2);border-radius:6px;color:var(--tx);font-family:'Space Mono',monospace;font-size:12px;padding:9px 11px;outline:none;transition:border-color .15s;width:100%}
 .f input:focus,.f select:focus{border-color:var(--ore)}
 .f input::placeholder{color:var(--mu)}
+.f select option{background:#1a1a1a}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:540px){.two{grid-template-columns:1fr}}
-.sep{margin-top:14px;padding-top:14px;border-top:1px solid var(--b)}
 .hint{font-family:'Space Mono',monospace;font-size:10px;color:var(--mu);margin-top:4px;line-height:1.65}
 .hint code{color:var(--ore);background:rgba(249,115,22,.08);padding:1px 4px;border-radius:3px}
-
-.btn-row{display:flex;gap:8px;align-items:center;margin-top:14px}
-.btn{background:var(--ore);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;cursor:pointer;transition:opacity .15s,transform .1s;height:38px;display:flex;align-items:center;gap:5px;white-space:nowrap}
-.btn:hover{opacity:.85} .btn:active{transform:scale(.97)} .btn:disabled{opacity:.35;cursor:not-allowed}
-.btn-sm{background:transparent;color:var(--m2);border:1px solid var(--b2);border-radius:5px;font-family:'Space Mono',monospace;font-size:10px;padding:5px 10px;cursor:pointer;transition:all .15s}
-.btn-sm:hover{border-color:var(--ore);color:var(--ore)}
-
-/* status */
+.btn-row{display:flex;gap:8px;margin-top:14px}
+.btn{background:var(--ore);color:#000;border:none;border-radius:6px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;padding:9px 24px;cursor:pointer;transition:opacity .15s;height:38px;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.btn:hover{opacity:.85} .btn:disabled{opacity:.35;cursor:not-allowed}
 .sb{display:none;background:var(--s);border:1px solid var(--b);border-radius:6px;padding:10px 14px;margin-bottom:12px;font-family:'Space Mono',monospace;font-size:11px;color:var(--m2);gap:8px;align-items:center}
 .sb.on{display:flex}
 .spin{width:11px;height:11px;border:2px solid var(--b2);border-top-color:var(--ore);border-radius:50%;animation:sp .65s linear infinite;flex-shrink:0}
 @keyframes sp{to{transform:rotate(360deg)}}
 .eb{display:none;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.22);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-family:'Space Mono',monospace;font-size:11px;color:#fca5a5;line-height:1.65;white-space:pre-wrap}
 .eb.on{display:block}
-
-/* miner badges */
-.miners-found{display:none;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:11px 14px;margin-bottom:12px;font-family:'Space Mono',monospace;font-size:11px;color:#86efac;line-height:1.8}
-.miners-found.on{display:block}
-.miners-found strong{color:#4ade80}
-
-/* results */
+.ok{display:none;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:10px 14px;margin-bottom:12px;font-family:'Space Mono',monospace;font-size:11px;color:#86efac;line-height:1.8}
+.ok.on{display:block}
 #res{display:none} #res.on{display:block}
 .rh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:6px}
 .rh h2{font-size:14px;font-weight:700}
-.tags{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
 .tag{font-family:'Space Mono',monospace;font-size:10px;border-radius:3px;padding:2px 6px}
 .tag-o{color:var(--ore);background:var(--og);border:1px solid var(--od)}
 .tag-d{color:var(--m2);border:1px solid var(--b2)}
-
-/* metrics */
 .g6{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
 @media(max-width:540px){.g6{grid-template-columns:1fr 1fr}}
 .mc{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:14px}
 .ml{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:7px;display:flex;align-items:center;gap:3px}
 .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.ds{background:var(--sol)} .do{background:var(--ore)} .dg{background:var(--gn)} .dr{background:var(--rd)} .dm{background:var(--mu)}
+.ds{background:var(--sol)}.do{background:var(--ore)}.dg{background:var(--gn)}.dr{background:var(--rd)}.dm{background:var(--mu)}
 .mv{font-size:19px;font-weight:800;letter-spacing:-.3px;line-height:1}
 .mu2{font-size:10px;font-weight:600;margin-left:2px;opacity:.5}
 .ms{font-family:'Space Mono',monospace;font-size:9px;color:var(--mu);margin-top:3px}
-
 .pnl{background:var(--s);border:1px solid var(--b);border-radius:8px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-bottom:14px}
 .pl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:3px}
 .pv{font-size:24px;font-weight:800;letter-spacing:-.7px}
-.pos{color:var(--gn)} .neg{color:var(--rd)}
+.pos{color:var(--gn)}.neg{color:var(--rd)}
 .pb{font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);text-align:right;line-height:1.7}
-
-/* per-miner breakdown */
-.miner-breakdown{margin-bottom:14px}
-.mb-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:8px}
-.mb-row{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:10px 14px;margin-bottom:6px;display:grid;grid-template-columns:auto 1fr repeat(4,auto);gap:8px;align-items:center;font-family:'Space Mono',monospace;font-size:10px}
-@media(max-width:700px){.mb-row{grid-template-columns:1fr;gap:4px}}
-.mb-addr{color:var(--ore);font-size:10px}
-.mb-stat{text-align:right;color:var(--m2)}
-.mb-stat span{color:var(--tx);font-weight:700}
-
-/* table */
+.mb-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:8px;margin-top:4px}
+.mb-row{background:var(--s);border:1px solid var(--b);border-radius:6px;padding:10px 14px;margin-bottom:6px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-family:'Space Mono',monospace;font-size:10px}
+.mb-addr{color:var(--ore)}
+.mb-s{color:var(--m2)} .mb-s b{color:var(--tx)}
 .stl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.3px;color:var(--m2);font-family:'Space Mono',monospace;margin-bottom:8px;margin-top:20px}
 .tw{overflow-x:auto;border:1px solid var(--b);border-radius:8px}
 table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:11px}
@@ -104,15 +82,13 @@ td{padding:7px 11px;vertical-align:middle;white-space:nowrap}
 td.m{color:var(--m2)}
 .badge{display:inline-flex;align-items:center;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;text-transform:uppercase}
 .b-deploy{background:rgba(249,115,22,.13);color:#fb923c;border:1px solid rgba(249,115,22,.2)}
-.b-claimsol{background:rgba(34,197,94,.11);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
-.b-claimore{background:rgba(251,191,36,.11);color:#fcd34d;border:1px solid rgba(251,191,36,.2)}
-.b-checkpoint{background:rgba(56,189,248,.11);color:#7dd3fc;border:1px solid rgba(56,189,248,.2)}
-.b-deposit{background:rgba(153,69,255,.11);color:#c084fc;border:1px solid rgba(153,69,255,.2)}
-.b-other{background:rgba(100,100,100,.11);color:#9ca3af;border:1px solid rgba(100,100,100,.18)}
-.ap{color:var(--gn)} .an{color:#f87171}
-.ta{color:var(--ore);text-decoration:none;font-size:10px} .ta:hover{text-decoration:underline}
-.miner-col{font-family:'Space Mono',monospace;font-size:9px;color:var(--m2)}
-
+.b-win{background:rgba(34,197,94,.11);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.b-ore{background:rgba(251,191,36,.11);color:#fcd34d;border:1px solid rgba(251,191,36,.2)}
+.b-chk{background:rgba(56,189,248,.11);color:#7dd3fc;border:1px solid rgba(56,189,248,.2)}
+.b-stk{background:rgba(153,69,255,.11);color:#c084fc;border:1px solid rgba(153,69,255,.2)}
+.b-x{background:rgba(100,100,100,.11);color:#9ca3af;border:1px solid rgba(100,100,100,.18)}
+.ap{color:var(--gn)}.an{color:#f87171}
+.ta{color:var(--ore);text-decoration:none;font-size:10px}.ta:hover{text-decoration:underline}
 .nt{background:rgba(249,115,22,.04);border:1px solid rgba(249,115,22,.12);border-radius:6px;padding:11px 15px;margin-top:16px;font-family:'Space Mono',monospace;font-size:10px;color:var(--m2);line-height:1.8}
 .nt strong{color:var(--ore)}
 ::-webkit-scrollbar{width:5px;height:5px}
@@ -123,46 +99,43 @@ td.m{color:var(--m2)}
 <body>
 <header>
   <div class="logo"><div class="li">⛏</div>ORE Analytics</div>
-  <span class="hn">Solana · ORE V3 · ore.supply</span>
+  <span class="hn">ORE V3 · ore.supply</span>
 </header>
 <main>
-  <h1>Wallet <span>ORE</span> Stats</h1>
-  <p class="sub">// Вводиш owner wallet — система сама знаходить всі miner акаунти</p>
+  <h1>ORE <span>Stats</span></h1>
+  <p class="sub">// Вводиш owner wallet — система знаходить miners і рахує статистику</p>
 
   <div class="card">
     <div class="ct">⚙ Параметри</div>
     <div class="f">
-      <label>Owner Wallet (твій Phantom / Solflare)</label>
-      <input id="owner" type="text" placeholder="67iTtXKfYuEQz4V7pTgbxcGpaPkW18x8RBGSzuvxa3eT" spellcheck="false" autocomplete="off">
-      <p class="hint">Головний гаманець з якого керуєш майнінгом</p>
+      <label>Owner Wallet (твій Phantom)</label>
+      <input id="owner" type="text" placeholder="JSMsaGJQi7JjfzkSTGKTp4dDteJGg5e3Lj28cQXy4C9" spellcheck="false" autocomplete="off">
     </div>
     <div class="two">
       <div class="f">
-        <label>Інтервал аналізу</label>
+        <label>Інтервал</label>
         <select id="preset">
           <option value="7">7 днів</option>
           <option value="14" selected>14 днів</option>
           <option value="30">30 днів</option>
           <option value="90">90 днів</option>
-          <option value="0">Всі TX (до 1000)</option>
+          <option value="0">Всі TX</option>
         </select>
       </div>
       <div class="f">
         <label>Helius API Key</label>
-        <input id="apikey" type="password" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+        <input id="key" type="password" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
         <p class="hint"><a href="https://dev.helius.xyz" target="_blank">dev.helius.xyz</a> → API Keys</p>
       </div>
     </div>
     <div class="btn-row">
-      <button class="btn" id="btn" onclick="run()">
-        <span id="bt">🔍 Знайти miners та аналізувати</span>
-      </button>
+      <button class="btn" id="btn" onclick="run()"><span id="bt">🔍 Аналіз</span></button>
     </div>
   </div>
 
   <div class="sb" id="sb"><div class="spin"></div><span id="st">...</span></div>
   <div class="eb" id="eb"></div>
-  <div class="miners-found" id="mf"></div>
+  <div class="ok" id="ok"></div>
 
   <div id="res">
     <div class="rh">
@@ -172,25 +145,16 @@ td.m{color:var(--m2)}
         <span class="tag tag-d" id="rt"></span>
       </div>
     </div>
-
-    <!-- 6 метрик -->
     <div class="g6" id="mg"></div>
-    <!-- PnL -->
     <div id="pnld"></div>
-
-    <!-- Per-miner breakdown -->
-    <div class="miner-breakdown">
-      <p class="mb-title">📊 По кожному miner окремо</p>
-      <div id="mb"></div>
-    </div>
-
-    <!-- Таблиця всіх TX -->
-    <p class="stl">📋 Всі ORE транзакції (до 300)</p>
+    <div class="mb-title">По кожному miner окремо</div>
+    <div id="mb"></div>
+    <p class="stl">Всі ORE транзакції (до 500)</p>
     <div class="tw">
       <table>
         <thead><tr>
-          <th>#</th><th>Дата</th><th>Miner</th><th>Інструкція</th>
-          <th>SOL зміна</th><th>ORE зміна</th><th>Fee SOL</th><th>TX</th>
+          <th>#</th><th>Дата</th><th>Miner</th><th>Тип</th>
+          <th>SOL</th><th>ORE</th><th>Fee</th><th>TX</th>
         </tr></thead>
         <tbody id="tb"></tbody>
       </table>
@@ -200,266 +164,288 @@ td.m{color:var(--m2)}
 </main>
 
 <script>
-// ══════════════════════════════════════════════════════════
-// CONSTANTS
-// ══════════════════════════════════════════════════════════
-const ORE_V3_PROGRAM  = "oreV3EG1i9BEgiAJ8b177Z2S2rMarzak4NMv1kULvWv";
-const ORE_KNOWN_MINTS = new Set(["oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz"]);
-const LAMPORTS        = 1_000_000_000;
-// Розмір мікро-переказу від owner до miner (0.00000525 SOL = 5250 lamports)
-// ORE використовує це для поповнення miner акаунту на rent
-const MICRO_TRANSFER  = 5250;
+// ── Constants ─────────────────────────────────────────────
+const ORE_V3  = "oreV3EG1i9BEgiAJ8b177Z2S2rMarzak4NMv1kULvWv";
+const LAM     = 1_000_000_000;
+const ORE_MINT= "oreoN2tQbHXVaZsr3pf66A48miqcBXCDJozganhEJgz";
 
-// ══════════════════════════════════════════════════════════
-// UI
-// ══════════════════════════════════════════════════════════
-const $   = id => document.getElementById(id);
-const ss  = (t,on=true) => { $("sb").classList.toggle("on",on); $("st").textContent=t; };
-const se  = t => { $("eb").textContent=t; $("eb").classList.toggle("on",!!t); };
-const sr  = v => $("res").classList.toggle("on",v);
-const fmt = (n,d=4) => Number(n).toFixed(d);
-const slp = ms => new Promise(r=>setTimeout(r,ms));
-const shortAddr = a => a.slice(0,6)+"…"+a.slice(-4);
+// ── UI ────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const ss= (t,on=true)=>{$("sb").classList.toggle("on",on);$("st").textContent=t};
+const se= t=>{$("eb").textContent=t;$("eb").classList.toggle("on",!!t)};
+const so= t=>{$("ok").innerHTML=t;$("ok").classList.toggle("on",!!t)};
+const sr= v=>$("res").classList.toggle("on",v);
+const fmt=(n,d=4)=>Number(n).toFixed(d);
+const slp=ms=>new Promise(r=>setTimeout(r,ms));
+const sh= a=>a.slice(0,6)+"…"+a.slice(-4);
 
-$("owner").addEventListener("keydown", e => { if(e.key==="Enter") run(); });
+$("owner").addEventListener("keydown",e=>{if(e.key==="Enter")run()});
 
-function fmtDate(ts) {
-  const d = new Date(ts*1000);
+function fmtDate(ts){
+  const d=new Date(ts*1000);
   return d.toLocaleDateString("uk-UA",{day:"2-digit",month:"2-digit",year:"2-digit"})
         +" "+d.toLocaleTimeString("uk-UA",{hour:"2-digit",minute:"2-digit"});
 }
 
-// ══════════════════════════════════════════════════════════
-// HELIUS API
-// ══════════════════════════════════════════════════════════
-async function fetchPage(addr, key, before=null) {
-  let url = `https://api.helius.xyz/v0/addresses/${addr}/transactions?api-key=${key}&limit=100`;
-  if (before) url += `&before=${before}`;
-  const r = await fetch(url);
-  if (!r.ok) {
-    const t = await r.text().catch(()=>"");
-    throw new Error(`HTTP ${r.status}${t?": "+t.slice(0,100):""}`);
-  }
+// ── Helius fetch ──────────────────────────────────────────
+async function hPage(addr,key,before=null){
+  let url=`https://api.helius.xyz/v0/addresses/${addr}/transactions?api-key=${key}&limit=100`;
+  if(before) url+=`&before=${before}`;
+  const r=await fetch(url);
+  if(!r.ok){const t=await r.text().catch(()=>"");throw new Error(`HTTP ${r.status}: ${t.slice(0,80)}`);}
   return r.json();
 }
 
-async function fetchAll(addr, key, days, maxPages=10) {
-  const cutoff = days===0 ? 0 : Math.floor(Date.now()/1000) - days*86400;
-  const all=[]; let before=null, page=0;
-  while (page < maxPages) {
-    const batch = await fetchPage(addr, key, before);
-    if (!Array.isArray(batch)||!batch.length) break;
+async function hAll(addr,key,days,maxPages=10){
+  const cutoff=days===0?0:Math.floor(Date.now()/1000)-days*86400;
+  const all=[];let before=null,page=0;
+  while(page<maxPages){
+    const batch=await hPage(addr,key,before);
+    if(!Array.isArray(batch)||!batch.length) break;
     let stop=false;
-    for (const tx of batch) {
-      if (cutoff && tx.timestamp && tx.timestamp < cutoff) { stop=true; break; }
+    for(const tx of batch){
+      if(cutoff&&tx.timestamp&&tx.timestamp<cutoff){stop=true;break;}
       all.push(tx);
     }
-    if (stop||batch.length<100) break;
-    before = batch[batch.length-1].signature;
+    if(stop||batch.length<100) break;
+    before=batch[batch.length-1].signature;
     page++;
-    await slp(150);
+    await slp(120);
   }
   return all;
 }
 
-// ══════════════════════════════════════════════════════════
-// КРОК 1: знаходимо miner акаунти з TX owner wallet
-// ══════════════════════════════════════════════════════════
-// Owner wallet робить мікро-перекази (5250 lamports = 0.00000525 SOL)
-// до miner акаунтів. Збираємо всі унікальні одержувачі таких переказів.
-function findMinerCandidates(ownerTxList, ownerAddr) {
-  const candidates = new Map(); // addr -> count
-  for (const tx of ownerTxList) {
+// ── Знаходимо miners з TX owner ───────────────────────────
+// Логіка: owner wallet є feePayer або є в accountData у TX де є ORE V3 program
+// АБО: знаходимо всіх унікальних signers/feePayers серед ORE TX власника
+function findMinersFromOwnerTxs(txList, owner) {
+  const candidates = new Map(); // addr -> score
+
+  for (const tx of txList) {
+    // Перевіряємо чи є це ORE TX (по будь-якому критерію)
+    const hasOre = isOreTxLoose(tx);
+
+    // Збираємо всі адреси з accountData
+    for (const ad of (tx.accountData||[])) {
+      const addr = ad.account;
+      if (!addr || addr === owner) continue;
+      const score = candidates.get(addr)||0;
+      // якщо це ORE TX — вищий пріоритет
+      candidates.set(addr, score + (hasOre ? 10 : 1));
+    }
+
+    // feePayer
+    if (tx.feePayer && tx.feePayer !== owner) {
+      const score = candidates.get(tx.feePayer)||0;
+      candidates.set(tx.feePayer, score + (hasOre ? 15 : 2));
+    }
+
+    // nativeTransfers — одержувачі
     for (const nt of (tx.nativeTransfers||[])) {
-      if (nt.fromUserAccount !== ownerAddr) continue;
-      if (nt.toUserAccount  === ownerAddr)  continue;
-      // мікро-перекази = характерна ознака поповнення miner акаунту
-      const amt = nt.amount || 0;
-      if (amt <= 10000) { // до 10000 lamports = 0.00001 SOL
-        const addr = nt.toUserAccount;
-        if (addr) candidates.set(addr, (candidates.get(addr)||0)+1);
+      if (nt.fromUserAccount === owner && nt.toUserAccount && nt.toUserAccount !== owner) {
+        const score = candidates.get(nt.toUserAccount)||0;
+        candidates.set(nt.toUserAccount, score + 5);
       }
     }
   }
-  // сортуємо по кількості переказів (найактивніші miner акаунти вгорі)
+
+  // Сортуємо по score, беремо топ-20
   return [...candidates.entries()]
     .sort((a,b)=>b[1]-a[1])
-    .map(([addr]) => addr);
+    .slice(0,20)
+    .map(([addr])=>addr);
 }
 
-// ══════════════════════════════════════════════════════════
-// КРОК 2: перевіряємо чи є ORE TX у кандидата
-// ══════════════════════════════════════════════════════════
-function isOreTx(tx) {
+// ── Перевірка ORE TX — широка (всі можливі критерії) ──────
+function isOreTxLoose(tx) {
+  // 1. instructions programId
   for (const ix of (tx.instructions||[])) {
-    if (ix.programId === ORE_V3_PROGRAM) return true;
+    if (ix.programId === ORE_V3) return true;
     for (const iix of (ix.innerInstructions||[])) {
-      if (iix.programId === ORE_V3_PROGRAM) return true;
+      if (iix.programId === ORE_V3) return true;
     }
   }
+  // 2. accountData contains ORE program
   for (const ad of (tx.accountData||[])) {
-    if (ad.account === ORE_V3_PROGRAM) return true;
+    if (ad.account === ORE_V3) return true;
+  }
+  // 3. description
+  const d = (tx.description||"").toLowerCase();
+  if (d.includes("ore")) return true;
+  // 4. source
+  if ((tx.source||"").toLowerCase().includes("ore")) return true;
+  // 5. tokenTransfers contain ORE mint
+  for (const tt of (tx.tokenTransfers||[])) {
+    if (tt.mint === ORE_MINT || (tt.mint||"").startsWith("ore")) return true;
   }
   return false;
 }
 
-// ══════════════════════════════════════════════════════════
-// PARSE TX
-// ══════════════════════════════════════════════════════════
-function getInstrType(tx) {
+// ── Точна перевірка ORE TX для miner ─────────────────────
+// Для miner акаунту — будь-яка TX де він feePayer або signer
+// і яка взаємодіє з ORE V3 program
+function isOreTxStrict(tx, miner) {
+  // feePayer = miner
+  const isMinerTx = tx.feePayer === miner ||
+    (tx.accountData||[]).some(ad => ad.account === miner);
+
+  if (!isMinerTx) return false;
+  return isOreTxLoose(tx);
+}
+
+// ── Parse TX ──────────────────────────────────────────────
+function getType(tx) {
   const d = tx.description||"";
-  if (/deploy/i.test(d))          return "Deploy";
-  if (/claimsol|claim sol/i.test(d)) return "ClaimSOL";
-  if (/claimore|claim ore/i.test(d)) return "ClaimORE";
-  if (/checkpoint/i.test(d))      return "Checkpoint";
-  if (/claimyield|claim yield/i.test(d)) return "ClaimYield";
-  if (/deposit/i.test(d))         return "Deposit";
-  if (/withdraw/i.test(d))        return "Withdraw";
-  if (/reloadsol|reload/i.test(d))return "ReloadSOL";
-  if (/automate/i.test(d))        return "Automate";
-  // fallback по balances
+  // Helius description для ORE V3:
+  // "ACuy4e... deployed 0.0001 SOL to 0 squares for Round #189160 on Ore V3 Program"
+  // "ACuy4e... claimed 2.31 SOL from Ore V3 Program"  (CheckPoint = win)
+  // "ACuy4e... claimed 0 ORE from Ore V3 Program"
+  if (/deploy/i.test(d))                    return "Deploy";
+  if (/claim.*sol|claimsol/i.test(d))       return "ClaimSOL";
+  if (/claim.*ore|claimore/i.test(d))       return "ClaimORE";
+  if (/checkpoint/i.test(d))                return "Checkpoint";
+  if (/claim.*yield|claimyield/i.test(d))   return "ClaimYield";
+  if (/deposit/i.test(d))                   return "Deposit";
+  if (/withdraw/i.test(d))                  return "Withdraw";
+  if (/reload/i.test(d))                    return "ReloadSOL";
+  if (/automate/i.test(d))                  return "Automate";
+  if (/ore/i.test(d))                       return "ORE";
   return "ORE";
 }
 
-function parseTx(tx, wallet, oreMints) {
+function parseTx(tx, miner) {
   const sig  = tx.signature;
   const ts   = tx.timestamp||0;
-  const fee  = (tx.fee||5000)/LAMPORTS;
-  const type = getInstrType(tx);
+  const fee  = (tx.fee||5000)/LAM;
+  const type = getType(tx);
 
-  // SOL зміна
+  // SOL зміна для miner акаунту
   let solChange = 0;
   for (const ad of (tx.accountData||[])) {
-    if (ad.account===wallet) { solChange=(ad.nativeBalanceChange||0)/LAMPORTS; break; }
+    if (ad.account === miner) {
+      solChange = (ad.nativeBalanceChange||0)/LAM;
+      break;
+    }
   }
 
-  // ORE зміна
+  // ORE token зміна
   let oreChange = 0;
   for (const tt of (tx.tokenTransfers||[])) {
-    const isOre = oreMints.has(tt.mint)||
-                  (tt.mint||"").toLowerCase().startsWith("ore");
+    const isOre = tt.mint===ORE_MINT||(tt.mint||"").startsWith("ore");
     if (!isOre) continue;
     const amt = parseFloat(tt.tokenAmount||0);
-    if (tt.toUserAccount===wallet)   oreChange += amt;
-    if (tt.fromUserAccount===wallet) oreChange -= amt;
+    if (tt.toUserAccount===miner)   oreChange += amt;
+    if (tt.fromUserAccount===miner) oreChange -= amt;
   }
 
-  // ORE fee = outflow ORE при Deposit
-  const oreFee = (type==="Deposit") ? Math.max(0,-oreChange) : 0;
-
-  return { sig, ts, type, solChange, oreChange, fee, oreFee, miner: wallet };
+  return {sig,ts,type,solChange,oreChange,fee,miner};
 }
 
-// ══════════════════════════════════════════════════════════
-// AGGREGATE
-// ══════════════════════════════════════════════════════════
+// ── Aggregate ─────────────────────────────────────────────
 function agg(txs) {
-  let deployed=0,withdrawn=0,count=0,solFees=0,oreFees=0,oreEarned=0;
+  let deployed=0,withdrawn=0,count=0,solFees=0,oreEarned=0,oreFees=0;
   for (const t of txs) {
-    count++; solFees+=t.fee; oreFees+=t.oreFee;
-    if (t.type==="Deploy"    && t.solChange<0) deployed  += Math.abs(t.solChange)-t.fee;
-    if (t.type==="ClaimSOL"  && t.solChange>0) withdrawn += t.solChange;
+    count++; solFees+=t.fee;
+    // Deploy: miner витрачає SOL (від'ємний solChange)
+    if (t.type==="Deploy" && t.solChange<0)
+      deployed += Math.abs(t.solChange) - t.fee;
+    // ClaimSOL або Checkpoint з великим inflow = виграш
+    if ((t.type==="ClaimSOL"||t.type==="Checkpoint") && t.solChange>0)
+      withdrawn += t.solChange;
     if (t.oreChange>0) oreEarned += t.oreChange;
+    if (t.oreChange<0) oreFees   += Math.abs(t.oreChange);
   }
-  return { deployed, withdrawn, count, solFees, oreFees, oreEarned,
-           net: withdrawn-deployed-solFees };
+  return {deployed,withdrawn,count,solFees,oreEarned,oreFees,
+          net: withdrawn-deployed-solFees};
 }
 
-// ══════════════════════════════════════════════════════════
-// ORE BALANCE
-// ══════════════════════════════════════════════════════════
-async function getOreBal(addr, key, oreMints) {
+// ── ORE balance ───────────────────────────────────────────
+async function getOreBal(addr,key) {
   try {
-    const r = await fetch(`https://api.helius.xyz/v0/addresses/${addr}/balances?api-key=${key}`);
-    if (!r.ok) return 0;
-    const d = await r.json();
-    for (const t of (d.tokens||[])) {
-      if (oreMints.has(t.mint)||(t.mint||"").toLowerCase().startsWith("ore"))
+    const r=await fetch(`https://api.helius.xyz/v0/addresses/${addr}/balances?api-key=${key}`);
+    if(!r.ok) return 0;
+    const d=await r.json();
+    for(const t of (d.tokens||[])){
+      if(t.mint===ORE_MINT||(t.mint||"").startsWith("ore"))
         return t.amount/Math.pow(10,t.decimals||11);
     }
     return 0;
-  } catch { return 0; }
+  } catch{return 0;}
 }
 
-// ══════════════════════════════════════════════════════════
-// RENDER
-// ══════════════════════════════════════════════════════════
-function renderMetrics(s, oreBal) {
-  $("mg").innerHTML = `
+// ── Render ────────────────────────────────────────────────
+function renderMetrics(s,oreBal){
+  $("mg").innerHTML=`
     <div class="mc"><div class="ml"><span class="dot ds"></span>0 · Внесено SOL</div>
       <div class="mv">${fmt(s.deployed,4)}<span class="mu2">SOL</span></div>
-      <div class="ms">Deploy у раунди (всі miners)</div></div>
+      <div class="ms">Deploy у раунди</div></div>
     <div class="mc"><div class="ml"><span class="dot dm"></span>1 · Кількість TX</div>
       <div class="mv">${s.count}<span class="mu2">шт</span></div>
-      <div class="ms">ORE транзакцій (всі miners)</div></div>
+      <div class="ms">ORE транзакцій</div></div>
     <div class="mc"><div class="ml"><span class="dot dr"></span>2 · Комісії Solana</div>
       <div class="mv">${fmt(s.solFees,5)}<span class="mu2">SOL</span></div>
-      <div class="ms">Network fees (всі miners)</div></div>
+      <div class="ms">Network fees</div></div>
     <div class="mc"><div class="ml"><span class="dot do"></span>3 · Комісії ORE</div>
       <div class="mv">${fmt(s.oreFees,4)}<span class="mu2">ORE</span></div>
-      <div class="ms">ORE outflow (deposit)</div></div>
+      <div class="ms">ORE outflow</div></div>
     <div class="mc"><div class="ml"><span class="dot dg"></span>4 · Виведено SOL</div>
       <div class="mv">${fmt(s.withdrawn,4)}<span class="mu2">SOL</span></div>
-      <div class="ms">ClaimSOL (всі miners)</div></div>
+      <div class="ms">ClaimSOL / Checkpoint win</div></div>
     <div class="mc"><div class="ml"><span class="dot do"></span>5 · Баланс ORE</div>
       <div class="mv">${fmt(oreBal,4)}<span class="mu2">ORE</span></div>
-      <div class="ms">Сума по всіх miners</div></div>`;
-
+      <div class="ms">Поточний баланс</div></div>`;
   const p=s.net>=0;
   $("pnld").innerHTML=`<div class="pnl">
-    <div>
-      <div class="pl">NET PnL (всі miners)</div>
-      <div class="pv ${p?"pos":"neg"}">${p?"+":""}${fmt(s.net,4)} SOL</div>
-    </div>
+    <div><div class="pl">NET PnL</div>
+      <div class="pv ${p?"pos":"neg"}">${p?"+":""}${fmt(s.net,4)} SOL</div></div>
     <div class="pb">
-      Виведено (ClaimSOL): +${fmt(s.withdrawn,4)} SOL<br>
-      Внесено (Deploy):&nbsp;&nbsp; −${fmt(s.deployed,4)} SOL<br>
-      Network fees:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; −${fmt(s.solFees,5)} SOL
+      Виведено: +${fmt(s.withdrawn,4)} SOL<br>
+      Внесено:&nbsp; −${fmt(s.deployed,4)} SOL<br>
+      Fees:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; −${fmt(s.solFees,5)} SOL
     </div></div>`;
 }
 
-function renderMinerBreakdown(minerStats) {
-  if (!minerStats.length) { $("mb").innerHTML=""; return; }
-  $("mb").innerHTML = minerStats.map(m => {
-    const p = m.stats.net>=0;
+function renderBreakdown(minerStats){
+  $("mb").innerHTML=minerStats.map(m=>{
+    const p=m.s.net>=0;
     return `<div class="mb-row">
-      <div><a class="ta" href="https://solscan.io/account/${m.addr}" target="_blank">${shortAddr(m.addr)}</a></div>
-      <div class="mb-stat">TX: <span>${m.stats.count}</span></div>
-      <div class="mb-stat">Deploy: <span class="an">−${fmt(m.stats.deployed,4)}</span></div>
-      <div class="mb-stat">ClaimSOL: <span class="ap">+${fmt(m.stats.withdrawn,4)}</span></div>
-      <div class="mb-stat">Fees: <span class="an">−${fmt(m.stats.solFees,5)}</span></div>
-      <div class="mb-stat">PnL: <span class="${p?"ap":"an"}">${p?"+":""}${fmt(m.stats.net,4)} SOL</span></div>
+      <span class="mb-addr"><a href="https://solscan.io/account/${m.addr}" target="_blank" style="color:var(--ore)">${sh(m.addr)}</a></span>
+      <span class="mb-s">TX:<b>${m.s.count}</b></span>
+      <span class="mb-s">Deploy:<b class="an">−${fmt(m.s.deployed,4)}</b></span>
+      <span class="mb-s">Win:<b class="ap">+${fmt(m.s.withdrawn,4)}</b></span>
+      <span class="mb-s">Fees:<b class="an">−${fmt(m.s.solFees,5)}</b></span>
+      <span class="mb-s">PnL:<b class="${p?"ap":"an"}">${p?"+":""}${fmt(m.s.net,4)} SOL</b></span>
     </div>`;
   }).join("");
 }
 
-function renderTable(allTxSorted) {
-  const rows = allTxSorted.slice(0,300);
-  if (!rows.length) {
+function renderTable(allTx){
+  const rows=allTx.slice(0,500);
+  if(!rows.length){
     $("tb").innerHTML=`<tr><td colspan="8" style="text-align:center;color:var(--mu);padding:20px">Немає записів</td></tr>`;
     return;
   }
   const TM={
-    "Deploy":     ["b-deploy",    "📤 Deploy"],
-    "ClaimSOL":   ["b-claimsol",  "💰 ClaimSOL"],
-    "ClaimORE":   ["b-claimore",  "🪙 ClaimORE"],
-    "Checkpoint": ["b-checkpoint","🔖 Checkpoint"],
-    "ClaimYield": ["b-claimsol",  "🌾 ClaimYield"],
-    "Deposit":    ["b-deposit",   "🔒 Deposit"],
-    "Withdraw":   ["b-other",     "↩ Withdraw"],
-    "ReloadSOL":  ["b-other",     "🔄 ReloadSOL"],
-    "Automate":   ["b-other",     "⚙ Automate"],
-    "ORE":        ["b-other",     "◎ ORE"],
+    "Deploy":    ["b-deploy","📤 Deploy"],
+    "ClaimSOL":  ["b-win","💰 ClaimSOL"],
+    "ClaimORE":  ["b-ore","🪙 ClaimORE"],
+    "Checkpoint":["b-chk","🔖 Checkpoint"],
+    "ClaimYield":["b-win","🌾 Yield"],
+    "Deposit":   ["b-stk","🔒 Deposit"],
+    "Withdraw":  ["b-x","↩ Withdraw"],
+    "ReloadSOL": ["b-x","🔄 Reload"],
+    "Automate":  ["b-x","⚙ Automate"],
+    "ORE":       ["b-x","◎ ORE"],
   };
   $("tb").innerHTML=rows.map((t,i)=>{
-    const [bc,bl]=TM[t.type]||["b-other",t.type];
-    const sc=t.solChange, oc=t.oreChange;
+    const [bc,bl]=TM[t.type]||["b-x",t.type];
+    const sc=t.solChange,oc=t.oreChange;
     return `<tr>
       <td class="m">${i+1}</td>
       <td class="m">${fmtDate(t.ts)}</td>
-      <td class="miner-col">${shortAddr(t.miner)}</td>
+      <td class="m" style="font-size:9px">${sh(t.miner)}</td>
       <td><span class="badge ${bc}">${bl}</span></td>
-      <td class="${sc>0?"ap":sc<0?"an":"m"}">${sc>0?"+":""}${fmt(sc,5)}</td>
+      <td class="${sc>0?"ap":sc<0?"an":"m"}">${sc!==0?(sc>0?"+":"")+fmt(sc,5):"—"}</td>
       <td class="${oc>0?"ap":oc<0?"an":"m"}">${oc!==0?(oc>0?"+":"")+fmt(oc,4):"—"}</td>
       <td class="an">−${fmt(t.fee,6)}</td>
       <td><a class="ta" href="https://solscan.io/tx/${t.sig}" target="_blank">${t.sig.slice(0,6)}…${t.sig.slice(-4)}</a></td>
@@ -467,130 +453,182 @@ function renderTable(allTxSorted) {
   }).join("");
 }
 
-// ══════════════════════════════════════════════════════════
-// MAIN
-// ══════════════════════════════════════════════════════════
-async function run() {
-  const owner  = $("owner").value.trim();
-  const apiKey = $("apikey").value.trim();
-  const days   = parseInt($("preset").value);
+// ── MAIN ──────────────────────────────────────────────────
+async function run(){
+  const owner=$("owner").value.trim();
+  const key=$("key").value.trim();
+  const days=parseInt($("preset").value);
 
-  if (!owner) { se("Введіть адресу owner wallet"); return; }
-  if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(owner)) { se("Невалідна адреса Solana"); return; }
-  if (!apiKey||apiKey.includes("http")) {
-    se("Введіть UUID API ключ\nПриклад: e54d58a4-3822-4a02-bdd1-9cc732c15692"); return;
-  }
+  if(!owner){se("Введіть адресу owner wallet");return;}
+  if(!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(owner)){se("Невалідна адреса Solana");return;}
+  if(!key||key.includes("http")){se("Введіть UUID API ключ (без URL)");return;}
 
-  se(""); sr(false);
-  $("mf").classList.remove("on");
-  const btn=$("btn"); btn.disabled=true; $("bt").textContent="Шукаємо miners...";
+  se("");so("");sr(false);
+  const btn=$("btn");btn.disabled=true;$("bt").textContent="Завантаження...";
 
   try {
-    // ── КРОК 1: TX owner wallet (беремо тільки останні 100 — вистачить для пошуку miners) ──
+    // 1. TX owner wallet — беремо 2 сторінки (200 TX) для пошуку miners
     ss("Завантаження TX owner wallet...");
-    const ownerTxs = await fetchAll(owner, apiKey, 0, 1); // 1 сторінка = 100 TX
-    ss(`Аналіз TX owner wallet (${ownerTxs.length} TX)...`);
+    const ownerTxs = await hAll(owner, key, 0, 2);
 
-    // Знаходимо miner кандидатів
-    let minerAddrs = findMinerCandidates(ownerTxs, owner);
-
-    // Обмежуємо до 10 кандидатів (на всяк випадок)
-    minerAddrs = minerAddrs.slice(0, 10);
-
-    if (!minerAddrs.length) {
-      se(`Miner акаунти не знайдено в TX owner wallet.\n\nПеревір:\n• Правильно вказаний owner wallet?\n• Чи є TX в цьому гаманці?\n\nАдреса: ${owner}`);
-      ss("",false); return;
+    if(!ownerTxs.length){
+      se("TX не знайдено для цього гаманця. Перевір адресу або ключ.");
+      ss("",false);return;
     }
 
-    // ── КРОК 2: для кожного кандидата перевіряємо чи є ORE TX ──
-    ss(`Перевірка ${minerAddrs.length} miner кандидатів...`);
+    // 2. Знаходимо кандидатів у miners
+    ss(`Аналіз ${ownerTxs.length} TX власника...`);
+    const candidates = findMinersFromOwnerTxs(ownerTxs, owner);
+
+    // 3. Перевіряємо кожного кандидата — качаємо першу сторінку і шукаємо ORE TX
     const confirmedMiners = [];
-    const oreMints = new Set([...ORE_KNOWN_MINTS]);
-
-    for (const addr of minerAddrs) {
-      ss(`Перевірка ${shortAddr(addr)}...`);
-      try {
-        const probe = await fetchPage(addr, apiKey); // перша сторінка
-        if (!Array.isArray(probe)) continue;
-        const hasOre = probe.some(isOreTx);
-        if (hasOre) {
-          confirmedMiners.push(addr);
-          // збираємо ORE mints
-          for (const tx of probe) {
-            for (const tt of (tx.tokenTransfers||[])) {
-              if ((tt.mint||"").toLowerCase().startsWith("ore")) oreMints.add(tt.mint);
-            }
-          }
-        }
-      } catch(e) { console.warn("probe error", addr, e.message); }
+    for(const addr of candidates){
+      if(confirmedMiners.length>=5) break; // максимум 5 miners
+      ss(`Перевірка ${sh(addr)}...`);
+      try{
+        const probe = await hPage(addr, key);
+        if(!Array.isArray(probe)||!probe.length) continue;
+        // Перевіряємо: чи є хоч одна ORE TX де miner = addr
+        const hasOre = probe.some(tx => isOreTxLoose(tx) && (
+          tx.feePayer===addr ||
+          (tx.accountData||[]).some(ad=>ad.account===addr&&ad.nativeBalanceChange!==0)
+        ));
+        if(hasOre) confirmedMiners.push(addr);
+      }catch(e){console.warn("probe",addr,e.message);}
       await slp(100);
     }
 
-    if (!confirmedMiners.length) {
-      se(`Знайдено ${minerAddrs.length} кандидатів, але жоден не має ORE V3 TX.\n\nProgram ID: ${ORE_V3_PROGRAM}\n\nКандидати:\n${minerAddrs.map(a=>shortAddr(a)).join("\n")}`);
-      ss("",false); return;
+    if(!confirmedMiners.length){
+      // Запасний варіант: показуємо топ кандидатів як manual input
+      se(`Miners не знайдено автоматично серед ${candidates.length} кандидатів.\n\nЗі скріншоту відомо що твої miners:\n• ACuy4eSvRtw5cjYQji39DxMFGAsMTdaPQm3Hxx4qVnT8\n• HaWGEatzkfVVCkfdD1nTbQ1qQ18sACQMnrqvkj3t3Pt\n\nВведи їх вручну нижче:`);
+      // Показуємо fallback форму
+      showManualFallback(key, days);
+      ss("",false);return;
     }
 
-    // Показуємо знайдених miners
-    $("mf").innerHTML = `<strong>✅ Знайдено ${confirmedMiners.length} miner акаунт(ів):</strong><br>` +
-      confirmedMiners.map((a,i)=>`Miner ${i+1}: <a href="https://solscan.io/account/${a}" target="_blank" style="color:#4ade80">${a}</a>`).join("<br>");
-    $("mf").classList.add("on");
+    so(`<strong>✅ Знайдено ${confirmedMiners.length} miner(s):</strong><br>`+
+       confirmedMiners.map((a,i)=>`Miner ${i+1}: <a href="https://solscan.io/account/${a}" target="_blank" style="color:#4ade80">${a}</a>`).join("<br>"));
 
-    // ── КРОК 3: завантажуємо повні TX для кожного confirmed miner ──
-    const minerStats = [];
-    let allTx = [];
-
-    for (let i=0; i<confirmedMiners.length; i++) {
-      const addr = confirmedMiners[i];
-      ss(`Завантаження TX miner ${i+1}/${confirmedMiners.length}: ${shortAddr(addr)}...`);
-      try {
-        const txs = await fetchAll(addr, apiKey, days);
-        const oreTxs = txs.filter(isOreTx);
-        const parsed = oreTxs.map(t=>parseTx(t, addr, oreMints));
-        minerStats.push({ addr, stats: agg(parsed), txCount: parsed.length });
-        allTx.push(...parsed);
-      } catch(e) { console.warn("miner fetch error", addr, e.message); }
-      await slp(200);
+    // 4. Завантажуємо повні TX для кожного miner
+    const minerStats=[];
+    let allTx=[];
+    for(let i=0;i<confirmedMiners.length;i++){
+      const addr=confirmedMiners[i];
+      ss(`Завантаження TX miner ${i+1}/${confirmedMiners.length}...`);
+      const txs = await hAll(addr,key,days);
+      const ore  = txs.filter(tx=>isOreTxLoose(tx));
+      const parsed = ore.map(tx=>parseTx(tx,addr));
+      minerStats.push({addr, s:agg(parsed)});
+      allTx.push(...parsed);
+      await slp(150);
     }
 
-    // ── КРОК 4: загальний ORE баланс (сума по всіх miners) ──
-    ss("Отримання ORE балансів...");
-    let totalOreBal = 0;
-    for (const addr of confirmedMiners) {
-      totalOreBal += await getOreBal(addr, apiKey, oreMints);
-      await slp(100);
+    // 5. Баланс ORE
+    ss("Отримання балансів...");
+    let totalOreBal=0;
+    for(const addr of confirmedMiners){
+      totalOreBal+=await getOreBal(addr,key);
+      await slp(80);
     }
 
-    // ── КРОК 5: рендеримо ──
+    // 6. Render
     ss("",false);
     allTx.sort((a,b)=>b.ts-a.ts);
-
-    const totalStats = agg(allTx);
-    const lbl = days===0?"всі TX":`${days} днів`;
-
-    $("rw").textContent = shortAddr(owner)+" (owner)";
-    $("rt").textContent = `${lbl} · ${confirmedMiners.length} miners · ${allTx.length} ORE TX`;
-
-    renderMetrics(totalStats, totalOreBal);
-    renderMinerBreakdown(minerStats);
+    const total=agg(allTx);
+    const lbl=days===0?"всі TX":`${days} днів`;
+    $("rw").textContent=sh(owner)+" (owner)";
+    $("rt").textContent=`${lbl} · ${confirmedMiners.length} miners · ${allTx.length} TX`;
+    renderMetrics(total,totalOreBal);
+    renderBreakdown(minerStats);
     renderTable(allTx);
-
-    const byType = allTx.reduce((a,t)=>{ a[t.type]=(a[t.type]||0)+1; return a; },{});
-    $("note").innerHTML =
-      `<strong>ORE V3 Program:</strong> ${ORE_V3_PROGRAM}<br>` +
-      `<strong>ORE Mints:</strong> ${[...oreMints].join(", ")}<br>` +
+    const byType=allTx.reduce((a,t)=>{a[t.type]=(a[t.type]||0)+1;return a},{});
+    $("note").innerHTML=
+      `<strong>ORE V3 Program:</strong> ${ORE_V3}<br>`+
+      `<strong>Miners:</strong> ${confirmedMiners.map(sh).join(", ")}<br>`+
       `<strong>Типи TX:</strong> `+Object.entries(byType).map(([k,v])=>`${k}:${v}`).join(" · ");
     sr(true);
 
-  } catch(e) {
+  }catch(e){
     ss("",false);
     let m=e.message||String(e);
-    if (m.includes("401")) m="Невірний API ключ (401)";
-    if (m.includes("429")) m="Ліміт запитів (429). Зачекай хвилину.";
-    if (m.includes("403")) m="Доступ заборонено (403). Перевір ключ.";
-    se("Помилка: "+m); console.error(e);
-  } finally {
-    btn.disabled=false; $("bt").textContent="🔍 Знайти miners та аналізувати";
+    if(m.includes("401")) m="Невірний API ключ";
+    if(m.includes("429")) m="Ліміт запитів. Зачекай хвилину.";
+    if(m.includes("403")) m="Доступ заборонено. Перевір ключ.";
+    se("Помилка: "+m);console.error(e);
+  }finally{
+    btn.disabled=false;$("bt").textContent="🔍 Аналіз";
+  }
+}
+
+// ── Fallback: ручне введення miners ──────────────────────
+function showManualFallback(key, days){
+  // Додаємо форму нижче
+  const existing = document.getElementById("manual-form");
+  if(existing) existing.remove();
+
+  const div=document.createElement("div");
+  div.id="manual-form";
+  div.className="card";
+  div.style.marginTop="16px";
+  div.innerHTML=`
+    <div class="ct">✏️ Введи miners вручну</div>
+    <div class="f"><label>Miner 1</label>
+      <input id="m1" type="text" value="ACuy4eSvRtw5cjYQji39DxMFGAsMTdaPQm3Hxx4qVnT8"></div>
+    <div class="f"><label>Miner 2 (опційно)</label>
+      <input id="m2" type="text" value="HaWGEatzkfVVCkfdD1nTbQ1qQ18sACQMnrqvkj3t3Pt"></div>
+    <div class="f"><label>Miner 3 (опційно)</label>
+      <input id="m3" type="text" placeholder=""></div>
+    <div class="btn-row">
+      <button class="btn" onclick="runManual('${key}',${days})">📊 Аналізувати</button>
+    </div>`;
+  document.querySelector("main").appendChild(div);
+}
+
+async function runManual(key,days){
+  const miners=[
+    $("m1")?.value.trim(),
+    $("m2")?.value.trim(),
+    $("m3")?.value.trim(),
+  ].filter(a=>a&&/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(a));
+
+  if(!miners.length){se("Введіть хоча б одну адресу miner");return;}
+  se("");so("");sr(false);
+  const btn=$("btn");btn.disabled=true;
+
+  try{
+    so(`<strong>Miners:</strong> ${miners.map(sh).join(", ")}`);
+    const minerStats=[];
+    let allTx=[];
+    for(let i=0;i<miners.length;i++){
+      const addr=miners[i];
+      ss(`Завантаження TX miner ${i+1}/${miners.length}...`);
+      const txs=await hAll(addr,key,days);
+      const ore=txs.filter(tx=>isOreTxLoose(tx));
+      const parsed=ore.map(tx=>parseTx(tx,addr));
+      minerStats.push({addr,s:agg(parsed)});
+      allTx.push(...parsed);
+      await slp(150);
+    }
+    ss("Баланси...");
+    let totalOreBal=0;
+    for(const addr of miners){totalOreBal+=await getOreBal(addr,key);await slp(80);}
+    ss("",false);
+    allTx.sort((a,b)=>b.ts-a.ts);
+    const total=agg(allTx);
+    const lbl=days===0?"всі TX":`${days} днів`;
+    $("rw").textContent="manual miners";
+    $("rt").textContent=`${lbl} · ${miners.length} miners · ${allTx.length} TX`;
+    renderMetrics(total,totalOreBal);
+    renderBreakdown(minerStats);
+    renderTable(allTx);
+    const byType=allTx.reduce((a,t)=>{a[t.type]=(a[t.type]||0)+1;return a},{});
+    $("note").innerHTML=`<strong>Miners:</strong> ${miners.map(sh).join(", ")}<br>`+
+      `<strong>Типи TX:</strong> `+Object.entries(byType).map(([k,v])=>`${k}:${v}`).join(" · ");
+    sr(true);
+  }catch(e){
+    ss("",false);se("Помилка: "+e.message);
+  }finally{
+    btn.disabled=false;$("bt").textContent="🔍 Аналіз";
   }
 }
 </script>
